@@ -5,7 +5,7 @@
       <p class="big-title regular">大中型企业在线人力资源服务平台</p>
       <p class="sub-title">直接服务员工，彻底解放HR</p>
       <div class="pd-list">
-        <div class="pd-list-item" v-for="(item,index) in pdList">
+        <div class="pd-list-item" v-for="(item,index) in pdList" :key="index">
           <div class="row-first">
             <img :src=item.img class="pd-img"/>
             <img src="../assets/img/index/gengduo.png" class="gengduo"/>
@@ -19,7 +19,7 @@
     <div class="index-block block2">
       <p class="big-title">泛员网核心优势</p>
       <div class="advantage-list">
-        <div class="advantage-list-item" v-for="(item,index) in advantageList">
+        <div class="advantage-list-item" v-for="(item,index) in advantageList" :key="index">
           <img :src="item.img" class="advantage-icon"/>
           <p class="advantage-title">{{item.t1}}</p>
           <p class="advantage-title">{{item.t2}}</p>
@@ -53,7 +53,7 @@
         <span class="more">查看更多<img src="../assets/img/index/查看更多.png" class="gengduoIcon"/></span>
       </div>
       <div class="info-list">
-        <div class="info-list-item" v-for="item in infoList">
+        <div class="info-list-item" v-for="(item,index) in infoList" :key="index">
           <p class="info-title">{{item.title}}</p>
           <p class="info-time">{{item.time}}</p>
         </div>
