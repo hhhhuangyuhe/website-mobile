@@ -5,7 +5,7 @@
       <p class="big-title regular">大中型企业在线人力资源服务平台</p>
       <p class="sub-title">直接服务员工，彻底解放HR</p>
       <div class="pd-list">
-        <div class="pd-list-item" v-for="(item,index) in pdList" :key="index">
+        <div class="pd-list-item" v-for="(item,index) in pdList" :key="index" @click="goPath(item.path)">
           <div class="row-first">
             <img :src=item.img class="pd-img"/>
             <img src="../assets/img/index/gengduo.png" class="gengduo"/>
@@ -78,47 +78,56 @@ export default {
           img: require("../assets/img/index/组 21.png"),
           name: '员工关系服务',
           describe: '智能在线入离职，人事管理全流程可视化',
-          colorLine: 'line1'
+          colorLine: 'line1',
+          path: '/product/ers'
         },{
           img: require("../assets/img/index/组 22.png"),
           name: '全国社保外包',
           describe: '300+城市，在线增减，数据即时可视',
-          colorLine: 'line2'
+          colorLine: 'line2',
+          path: '/product/nsio'
         },{
           img: require("../assets/img/index/组 23.png"),
           name: '薪酬核算',
           describe: '一键核算，智能纠错，数据安全准确',
-          colorLine: 'line3'
+          colorLine: 'line3',
+          path: '/product/salaryAccounting'
         },{
           img: require("../assets/img/index/组 24.png"),
           name: '薪资代发',
           describe: '银企直连，电子工资条，个税属地化申报',
-          colorLine: 'line4'
+          colorLine: 'line4',
+          path: '/product/payroll'
         },{
           img: require("../assets/img/index/组 25.png"),
           name: '考勤与休假',
           describe: '移动定位考勤，智能排班，实时考勤报表',
-          colorLine: 'line5'
+          colorLine: 'line5',
+          path: '/product/aav'
         },{
           img: require("../assets/img/index/组 26.png"),
           name: '员工体检',
           describe: '150+城市，450+体检机构，员工体检进度即时可视',
-          colorLine: 'line6'
+          colorLine: 'line6',
+          path: '/product/eme'
         },{
           img: require("../assets/img/index/组 27.png"),
           name: '补充员工保障',
           describe: '在线参保与理赔，每月结算与付款',
-          colorLine: 'line7'
+          colorLine: 'line7',
+          path: '/product/sep'
         },{
           img: require("../assets/img/index/组 28.png"),
           name: '节日福利',
           describe: '精选节日商品，员工自主N选1，全国免费包邮',
-          colorLine: 'line8'
+          colorLine: 'line8',
+          path: '/product/holidayBenefits'
         },{
           img: require("../assets/img/index/组 29.png"),
           name: '积分福利',
           describe: '激活组织活力，增加员工到手收入，降低企业财税压力',
-          colorLine: 'line9'
+          colorLine: 'line9',
+          path: '/product/pointBenefits'
         },
       ],
       advantageList: [
@@ -188,6 +197,13 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    goPath(path){
+        this.$router.push({
+          path: path
+        })
+      }
   }
 }
 </script>
@@ -214,6 +230,13 @@ export default {
     color:rgba(66,66,66,1);
     line-height: 32px;
     margin-bottom: 29px;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .indexPage .index-block.block5 .info-list .info-time{
     font-size:24px;

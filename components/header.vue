@@ -7,7 +7,7 @@
     <!-- 导航 -->
     <transition name="fyw-nav-transition" enter-active-class="animate__animated animate__fadeInDown" leave-active-class="animate__animated animate__fadeOutUp" >
       <div class="fyw-nav" v-show="showNav">
-        <div class="fyw-nav-item active">
+        <div class="fyw-nav-item" :class="nowRoute == 'index'? 'active' : ''" @click="goPath('/')">
           <img class="fyw-nav-icon" src="../assets/img/nav/主页.png"/>
           <span class="text">首页</span>
         </div>
@@ -18,9 +18,15 @@
         </div>
         <div class="fyw-nav-item product-list" v-show="showProductNav">
           <div class="products">
-            <span class="product-item active-pd">员工关系服务</span><span class="product-item">全国社保外包</span><span class="product-item">薪酬核算</span>
-            <span class="product-item">薪资代发</span><span class="product-item">考勤与休假</span><span class="product-item">员工体检</span>
-            <span class="product-item">补充员工保障</span><span class="product-item">节日福利</span><span class="product-item">积分福利</span>
+            <span class="product-item" :class="nowRoute == 'product-ers'? 'active-pd' : ''" @click="goPath('/product/ers')">员工关系服务</span>
+            <span class="product-item" :class="nowRoute == 'product-nsio'? 'active-pd' : ''" @click="goPath('/product/nsio')">全国社保外包</span>
+            <span class="product-item" :class="nowRoute == 'product-salaryAccounting'? 'active-pd' : ''" @click="goPath('/product/salaryAccounting')">薪酬核算</span>
+            <span class="product-item" :class="nowRoute == 'product-payroll'? 'active-pd' : ''" @click="goPath('/product/payroll')">薪资代发</span>
+            <span class="product-item" :class="nowRoute == 'product-aav'? 'active-pd' : ''" @click="goPath('/product/aav')">考勤与休假</span>
+            <span class="product-item" :class="nowRoute == 'product-eme'? 'active-pd' : ''" @click="goPath('/product/eme')">员工体检</span>
+            <span class="product-item" :class="nowRoute == 'product-sep'? 'active-pd' : ''" @click="goPath('/product/sep')">补充员工保障</span>
+            <span class="product-item" :class="nowRoute == 'product-holidayBenefits'? 'active-pd' : ''" @click="goPath('/product/holidayBenefits')">节日福利</span>
+            <span class="product-item" :class="nowRoute == 'product-pointBenefits'? 'active-pd' : ''" @click="goPath('/product/pointBenefits')">积分福利</span>
           </div>
         </div>
         <div class="fyw-nav-item ">
@@ -53,18 +59,40 @@ export default {
       return{
         showNav: false,
         showProductNav: false,
+        nowRoute: 'index'
       }
     },
+    methods: {
+      initHighlight(){
+        console.log(this.$route.name)
+        this.nowRoute = this.$route.name
+        this.showNav = false;
+      },
+      goPath(path){
+        this.$router.push({
+          path: path
+        })
+      }
+    },
+    mounted() {
+      this.initHighlight()
+    },
+    watch: {
+      "$route"() {
+        this.initHighlight()
+      }
+    }
 }
 </script>
 <style scoped>
   .fyw-nav{
     background: rgba(255,255,255,1);
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 108px);
     position: absolute;
     top: 108px;
     left: 0;
+    overflow-y: scroll;
   }
   .fyw-nav .fyw-nav-item{
     background: #ffffff;
@@ -145,7 +173,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 11;
   }
   #fyw-header .fyw-header-text{
     color:rgba(0,0,0,1);
