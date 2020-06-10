@@ -29,11 +29,11 @@
             <span class="product-item" :class="nowRoute == 'product-pointBenefits'? 'active-pd' : ''" @click="goPath('/product/pointBenefits')">积分福利</span>
           </div>
         </div>
-        <div class="fyw-nav-item ">
+        <div class="fyw-nav-item" :class="nowRoute == 'information'? 'active' : ''" @click="goPath('/information')">
           <img class="fyw-nav-icon" src="../assets/img/nav/活动资讯.png"/>
           <span class="text">活动与资讯 </span>
         </div>
-        <div class="fyw-nav-item ">
+        <div class="fyw-nav-item" :class="nowRoute == 'tabloid'? 'active' : ''" @click="goPath('/tabloid')">
           <img class="fyw-nav-icon" src="../assets/img/nav/小报.png"/>
           <span class="text">泛员小报</span>
         </div>
@@ -45,7 +45,7 @@
           <img class="fyw-nav-icon" src="../assets/img/nav/计划.png"/>
           <span class="text">2020百家企业数字化转型援助计划</span>
         </div>
-        <div class="fyw-nav-item ">
+        <div class="fyw-nav-item" :class="nowRoute == 'aboutus'? 'active' : ''" @click="goPath('/aboutus')">
           <img class="fyw-nav-icon" src="../assets/img/nav/关于.png"/>
           <span class="text">关于泛员网</span>
         </div>
@@ -64,7 +64,6 @@ export default {
     },
     methods: {
       initHighlight(){
-        console.log(this.$route.name)
         this.nowRoute = this.$route.name
         this.showNav = false;
       },

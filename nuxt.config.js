@@ -28,7 +28,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/font.css'
+    '~/assets/font.css',
+    '~/assets/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -47,7 +48,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
   axios: {
     proxy: true

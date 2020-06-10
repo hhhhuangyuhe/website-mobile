@@ -193,7 +193,7 @@ export default {
       left: 0;
     }
   .animate__animated.animate__fadeInUp {
-    --animate-duration: 500ms;
+    --animate-duration: 300ms;
   }
   .animate__animated.animate__fadeOutDown {
     --animate-duration: 300ms;
