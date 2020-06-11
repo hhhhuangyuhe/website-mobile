@@ -228,7 +228,6 @@ export default {
     font-size:30px;
     font-weight:400;
     color:rgba(66,66,66,1);
-    line-height: 32px;
     margin-bottom: 29px;
     text-overflow: -o-ellipsis-lastline;
     overflow: hidden;

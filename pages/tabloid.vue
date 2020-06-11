@@ -36,7 +36,12 @@
     <div class="function-list wt-type">
       <p class="inner-title">{{activeName}}</p>
       <div class="list-container">
-        <div class="list-item" v-for="(item,index) in currentList" :key="index">
+        <div
+          class="list-item"
+          v-for="(item,index) in currentList"
+          :key="index"
+          @click="seeDetail(item._id, item._categoryid)"
+        >
           <img :src="item._imgurl" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
@@ -48,43 +53,73 @@
     <div class="loading-cover" v-if="pageLoading">
       <van-loading color="#f08200" size="36" class="loading-icon" />
     </div>
+    <FYWSubscribe></FYWSubscribe>
   </div>
 </template>
 
 <script>
+import FYWSubscribe from "../components/subscribe";
 export default {
   layout: "fyw",
-  components: {},
+  components: {
+    FYWSubscribe
+  },
+  async asyncData({ app, query }) {
+    let { data, status } = await app.$axios.get(`/api/News/IndexData`);
+    const theme = query.theme;
+    let currentList = data.fygd;
+    let active = 0;
+    switch (theme) {
+      case "泛员观点":
+        currentList = data.fygd;
+        active = 0;
+        break;
+      case "泛员动态":
+        currentList = data.fydt;
+        active = 1;
+        break;
+      case "政策快讯":
+        currentList = data.zckx;
+        active = 2;
+        break;
+      case "政策解读":
+        currentList = data.zcjd;
+        active = 3;
+        break;
+      case "劳动风险案例":
+        currentList = data.ldfxal;
+        active = 4;
+        break;
+      case "服务案例":
+        currentList = data.fwal;
+        active = 5;
+        break;
+      default:
+        currentList = data.fygd;
+        active = 0;
+        break;
+    }
+    return {
+      allData: data,
+      currentList: currentList,
+      active: active,
+      activeName: theme?theme:'泛员观点'
+    };
+  },
   data() {
     return {
-      active: 0,
       navBarFixed: false,
-      allData: "",
-      currentList: [],
-      activeName: "",
-      pageLoading: false,
+      pageLoading: false
     };
   },
   methods: {
-    async GetData() {
-        this.pageLoading = true;
-      let data = await this.IndexData();
-      this.pageLoading = false;
-      return data;
-    },
-    IndexData() {
-      var _this = this;
-      return new Promise((resolve, reject) => {
-        this.$axios({
-          url: "/api/News/IndexData"
-        })
-          .then(res => {
-            _this.allData = res.data;
-            resolve(res);
-          })
-          .catch(error => {
-            reject(res);
-          });
+    seeDetail(id, parentId) {
+      this.$router.push({
+        path: "/paper",
+        query: {
+          id: id,
+          parentId: parentId
+        }
       });
     },
     formatTime(t) {
@@ -103,27 +138,27 @@ export default {
       switch (theme) {
         case 0:
           this.currentList = this.allData.fygd;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 1:
           this.currentList = this.allData.fydt;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 2:
           this.currentList = this.allData.zckx;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 3:
           this.currentList = this.allData.zcjd;
-          this.$refs.infoNav.scrollLeft = 70
+          this.$refs.infoNav.scrollLeft = 70;
           break;
         case 4:
           this.currentList = this.allData.ldfxal;
-          this.$refs.infoNav.scrollLeft = 140
+          this.$refs.infoNav.scrollLeft = 140;
           break;
         case 5:
           this.currentList = this.allData.fwal;
-          this.$refs.infoNav.scrollLeft = 210
+          this.$refs.infoNav.scrollLeft = 210;
           break;
         default:
           this.currentList = this.allData.fygd;
@@ -145,13 +180,10 @@ export default {
   },
   mounted() {
     var _this = this;
-    this.GetData().then(res => {
-      _this.currentList = _this.allData.fygd;
-      window.addEventListener("scroll", this.watchScroll);
-    });
+    window.addEventListener("scroll", _this.watchScroll);
   },
-  beforeDestroy(){
-      window.removeEventListener("scroll", this.watchScroll);
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.watchScroll);
   }
 };
 </script>

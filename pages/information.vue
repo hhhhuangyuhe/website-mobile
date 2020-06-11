@@ -45,9 +45,9 @@
     </ul>
     <div class="latest-function" v-if="latest!='' && active == 0">
       <p class="inner-title">最新活动</p>
-      <img :src="latest._imgurl" class="latest-img" />
+      <img :src="latest._imgurl" class="latest-img" @click="seeDetail(latest._id, latest._categoryid)"/>
       <div class="latest-detail">
-        <p class="title">{{latest._title}}</p>
+        <p class="title" @click="seeDetail(latest._id, latest._categoryid)">{{latest._title}}</p>
         <span class="signUp">立即报名</span>
       </div>
       <p class="time">{{formatTime(latest._addtime)}}</p>
@@ -55,7 +55,7 @@
     <div class="function-list" v-if="functionList.length > 0 && active == 0">
       <p class="inner-title">往期活动</p>
       <div class="list-container">
-        <div class="list-item" v-for="(item,index) in functionList" :key="index">
+        <div class="list-item" v-for="(item,index) in functionList" :key="index" @click="seeDetail(item._id, item._categoryid)">
           <img :src="item._imgurl" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
@@ -67,7 +67,7 @@
     <div class="function-list wt-type" v-if="active != 0">
       <p class="inner-title">{{activeName}}</p>
       <div class="list-container">
-        <div class="list-item" v-for="(item,index) in currentList" :key="index">
+        <div class="list-item" v-for="(item,index) in currentList" :key="index" @click="seeDetail(item._id, item._categoryid)">
           <img :src="item._imgurl" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
@@ -79,53 +79,89 @@
     <div class="loading-cover" v-if="pageLoading">
       <van-loading color="#f08200" size="36" class="loading-icon" />
     </div>
+    <FYWSubscribe></FYWSubscribe>
   </div>
 </template>
 
 <script>
+import FYWSubscribe from "../components/subscribe";
 export default {
   layout: "fyw",
-  components: {},
+  components: {
+    FYWSubscribe
+  },
+  async asyncData({ app, query }) {
+    let { data } = await app.$axios.get(`/api/NewActive/IndexData`)
+    const theme = query.theme;
+    let currentList = data.fygd;
+    let active = 0;
+    switch (theme) {
+      case "市场活动":
+        currentList = data.schd;
+        active = 0;
+        break;
+      case "泛员动态":
+        currentList = data.fydt;
+        active = 1;
+        break;
+      case "劳动关系":
+        currentList = data.ldgx;
+        active = 2;
+        break;
+      case "社保公积金":
+        currentList = data.sbgjj;
+        active = 3;
+        break;
+      case "薪酬管理":
+        currentList = data.xcgl;
+        active = 4;
+        break;
+      case "员工福利":
+        currentList = data.ygfl;
+        active = 5;
+        break;
+      case "认可激励":
+        currentList = data.rkjl;
+        active = 6;
+        break;
+        case "HR信息化":
+        currentList = data.hrxxh;
+        active = 7;
+        break;
+      default:
+        currentList = data.schd;
+        active = 0;
+        break;
+    }
+      return {
+        allData: data,
+        latest:
+          data.hasOwnProperty("schd") && data.schd.length > 0
+            ? data.schd[0]
+            : "",
+        functionList:
+          data.hasOwnProperty("schd") && data.schd.length > 1
+            ? data.schd.slice(1)
+            : [],
+            currentList: currentList,
+            active: active,
+            activeName: theme?theme:'市场活动'
+      }
+  },
   data() {
     return {
-      active: 0,
       navBarFixed: false,
-      allData: "",
-      latest: "",
-      functionList: [],
-      currentList: [],
-      activeName: "",
-      pageLoading: false,
+      pageLoading: false
     };
   },
   methods: {
-    async GetData() {
-        this.pageLoading = true;
-      let data = await this.IndexData();
-      this.pageLoading = false;
-      return data;
-    },
-    IndexData() {
-      var _this = this;
-      return new Promise((resolve, reject) => {
-        this.$axios({
-          url: "/api/NewActive/IndexData"
-        })
-          .then(res => {
-            _this.allData = res.data;
-            _this.latest =
-              res.data.hasOwnProperty("schd") && res.data.schd.length > 0
-                ? res.data.schd[0]
-                : "";
-            _this.functionList =
-              res.data.hasOwnProperty("schd") && res.data.schd.length > 1
-                ? res.data.schd.slice(1)
-                : [];
-            resolve(res);
-          })
-          .catch(error => {
-            reject(res);
-          });
+    seeDetail(id, parentId) {
+      this.$router.push({
+        path: "/activity",
+        query: {
+          id: id,
+          parentId: parentId
+        }
       });
     },
     formatTime(t) {
@@ -144,27 +180,27 @@ export default {
       switch (theme) {
         case 0:
           this.currentList = this.allData.schd;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 1:
           this.currentList = this.allData.fydt;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 2:
           this.currentList = this.allData.ldgx;
-          this.$refs.infoNav.scrollLeft = 0
+          this.$refs.infoNav.scrollLeft = 0;
           break;
         case 3:
           this.currentList = this.allData.sbgjj;
-          this.$refs.infoNav.scrollLeft = 70
+          this.$refs.infoNav.scrollLeft = 70;
           break;
         case 4:
           this.currentList = this.allData.xcgl;
-          this.$refs.infoNav.scrollLeft = 140
+          this.$refs.infoNav.scrollLeft = 140;
           break;
         case 5:
           this.currentList = this.allData.ygfl;
-          this.$refs.infoNav.scrollLeft = 210
+          this.$refs.infoNav.scrollLeft = 210;
           break;
         case 6:
           this.currentList = this.allData.rkjl;
@@ -191,12 +227,11 @@ export default {
     }
   },
   mounted() {
-    this.GetData().then(res => {
-      window.addEventListener("scroll", this.watchScroll);
-    });
+    var _this = this;
+    window.addEventListener("scroll", _this.watchScroll);
   },
-  beforeDestroy(){
-      window.removeEventListener("scroll", this.watchScroll);
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.watchScroll);
   }
 };
 </script>
@@ -316,12 +351,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.3rem;
+  margin-bottom: 30px;
 }
 .function-list .list-item .item-img {
   width: 240px;
   height: 160px;
-  margin-right: 0.3rem;
+  margin-right: 30px;
 }
 .function-list .list-item .item-detail .item-title {
   font-size: 30px;

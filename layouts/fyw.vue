@@ -60,5 +60,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin-top: 108px;
   min-height: calc(100vh - 659px);
   position: relative;
+  padding-bottom: 142px;
 }
 </style>

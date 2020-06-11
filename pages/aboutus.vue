@@ -147,6 +147,9 @@ export default {
   mounted () {
     // 事件监听滚动条
     window.addEventListener('scroll', this.watchScroll)
+  },
+  beforeDestroy(){
+    window.removeEventListener("scroll", this.watchScroll);
   }
 };
 </script>
