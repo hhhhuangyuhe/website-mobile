@@ -1,6 +1,6 @@
 <template>
   <div id="fyw-header">
-    <img src="../assets/img/index/logo_navi.png" class="fyw-logo"/>
+    <img src="../assets/img/index/logo_navi.png" class="fyw-logo" @click="$router.push({path: '/'})"/>
     <span v-if="!showNav" class="fyw-phone"><img src="../assets/img/index/phone.png" class="phone"/>400-0909-388</span>
     <span v-else class="fyw-header-text">导航</span>
     <img :src="showNav?require('../assets/img/nav/guanbi.png'):require('../assets/img/index/hanbao.png')" :class="showNav?'guanbi':'hanbao'" @click="showNav = !showNav"/>
@@ -68,6 +68,7 @@ export default {
         this.showNav = false;
       },
       goPath(path){
+        this.showNav = false;
         this.$router.push({
           path: path
         })
@@ -205,7 +206,7 @@ export default {
     width: 26px;
   }
   .animate__animated.animate__fadeInDown {
-    --animate-duration: 250ms;
+    --animate-duration: 200ms;
   }
   .animate__animated.animate__fadeOutUp {
     --animate-duration: 200ms;

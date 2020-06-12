@@ -164,6 +164,7 @@ export default {
           this.currentList = this.allData.fygd;
           break;
       }
+      document.documentElement.scrollTop = 140
     },
     watchScroll() {
       var setHeight = this.$refs.bannerImg.clientHeight;

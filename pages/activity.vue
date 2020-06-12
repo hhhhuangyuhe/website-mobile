@@ -5,7 +5,7 @@
       <p class="activity-time-row">
         <span class="activity-time">{{formatTime(detailData._addtime)}}</span>
         <span class="activity-nav">
-          首页 >
+          <span @click="$router.push({path: '/'})">首页 ></span>
           <span class="orange"><span @click="goTo()">{{CurItemParent._title}}</span>-<span @click="goTo(CurItem._title)">{{CurItem._title}}</span></span>
         </span>
       </p>

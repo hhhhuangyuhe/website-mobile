@@ -32,7 +32,6 @@ export default {
   font-size: 24px;
 }
 input,textarea{
-  border: none;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 
   -webkit-user-select: none;
