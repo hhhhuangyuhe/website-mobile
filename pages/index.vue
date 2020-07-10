@@ -2,8 +2,8 @@
   <div class="indexPage">
     <img src="../assets/img/index/AD.png" class="adv" />
     <div class="index-block block1">
-      <p class="big-title regular">大中型企业在线人力资源服务平台</p>
-      <p class="sub-title">直接服务员工，彻底解放HR</p>
+      <p class="big-title regular">大中型企业人力资源管理数字化服务平台</p>
+      <p class="sub-title">深度服务员工、激发组织活力</p>
       <div class="pd-list">
         <div
           class="pd-list-item"
@@ -315,7 +315,7 @@
     <div class="index-block block5">
       <div class="title-group">
         <span class="title">最新资讯</span>
-        <span class="more">
+        <span class="more" @click="$router.push('/latest')">
           查看更多
           <img src="../assets/img/index/查看更多.png" class="gengduoIcon" />
         </span>
@@ -350,9 +350,10 @@ export default {
       newsSwiperList:
         data.hasOwnProperty("schd") && data.schd.length > 0 ? data.schd : [],
       infoList:
-        data.hasOwnProperty("fydt") && data.fydt.length > 0
-          ? data.fydt.slice(0, 5)
-          : []
+        // data.hasOwnProperty("fydt") && data.fydt.length > 0
+        //   ? data.fydt.slice(0, 5)
+        //   : []
+        data.hasOwnProperty("mn") && data.mn.length > 0 ? data.mn : []
     };
   },
   data() {
@@ -501,6 +502,13 @@ export default {
       } else {
         cBox.scrollTop++;
       }
+    },
+    compare(property) {
+      return (a, b) => {
+        var value1 = new Date(a[property]);
+        var value2 = new Date(b[property]);
+        return value2 - value1;
+      };
     }
   },
   mounted() {
@@ -510,6 +518,7 @@ export default {
     c2.innerHTML = c1.innerHTML;
     cBox.scrollTop = 0;
     this.intervalObj = setInterval(this.rollStart, 40);
+    this.infoList = this.infoList.sort(this.compare("_addtime")).slice(0, 5);
   },
   beforeDestroy() {
     clearInterval(this.intervalObj);

@@ -141,6 +141,7 @@ export default {
 }
 #paper .paper-detail-words img {
     max-width: 670px;
+    height: auto;
 }
 .loading-cover {
   position: fixed;

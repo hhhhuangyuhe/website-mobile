@@ -6,22 +6,56 @@
         <span class="activity-time">{{formatTime(detailData._addtime)}}</span>
         <span class="activity-nav">
           <span @click="$router.push({path: '/'})">首页 ></span>
-          <span class="orange"><span @click="goTo()">{{CurItemParent._title}}</span>-<span @click="goTo(CurItem._title)">{{CurItem._title}}</span></span>
+          <span class="orange">
+            <span @click="goTo()">{{CurItemParent._title}}</span>-
+            <span @click="goTo(CurItem._title)">{{CurItem._title}}</span>
+          </span>
         </span>
       </p>
       <div class="activity-sammary">{{detailData._summary}}</div>
-      <div v-html="detailData._contents" class="activity-detail-words"></div>
+      <!-- <div v-html="detailData._contents" class="activity-detail-words"></div> -->
+      <p class="activity-detail-title">信息</p>
+      <ul class="activity-main-info">
+        <li>主办方：{{detailData._sponsor}}</li>
+        <li>活动时间：{{formatTime(detailData._datetime)}}</li>
+        <li>活动类型：{{formatActivityType(detailData._various)}}</li>
+        <li>活动地点：{{detailData._address}}</li>
+        <li>参会对象：{{detailData._object}}</li>
+        <li>参会人数：{{detailData._participantsnum == null ? 0 : detailData._participantsnum}} 人</li>
+        <li>
+          报名参加：
+          <a
+            :href="detailData._shareurl"
+            style="color: #2D8CF0;font-size: initial;"
+            target="_blank"
+          >{{detailData._shareurl}}</a>
+        </li>
+      </ul>
+      <p class="activity-detail-title">背景</p>
+      <span v-html="detailData._background"></span>
+      <br />
+      <p class="activity-detail-title">主题</p>
+      <span v-html="detailData._theme"></span>
+      <br />
+      <p class="activity-detail-title">嘉宾</p>
+      <span v-html="detailData._specialguest"></span>
+      <br />
     </div>
     <div class="relative-info">
-        <p class="t-title">
-            <span class="text">最新资讯</span><span class="more">查看更多</span>
-        </p>
-        <ul>
-            <li v-for="(item,index) in HotList" :key="index" @click="seeDetail(item._id, item._categoryid)">
-                <p class="title">{{item._title}}</p>
-                <p class="time">{{formatTime(item._addtime)}}</p>
-            </li>
-        </ul>
+      <p class="t-title">
+        <span class="text">最新资讯</span>
+        <span class="more">查看更多</span>
+      </p>
+      <ul>
+        <li
+          v-for="(item,index) in HotList"
+          :key="index"
+          @click="seeDetail(item._id, item._categoryid)"
+        >
+          <p class="title">{{item._title}}</p>
+          <p class="time">{{formatTime(item._addtime)}}</p>
+        </li>
+      </ul>
     </div>
     <div class="loading-cover" v-if="pageLoading">
       <van-loading color="#f08200" size="36" class="loading-icon" />
@@ -37,16 +71,17 @@ export default {
   components: {
     FYWSubscribe
   },
-  watchQuery: ['id','parentId'],
+  watchQuery: ["id", "parentId"],
   async asyncData({ app, query }) {
-    let { data } = await app.$axios
-      .get(`/api/NewActive/InnerData?id=` + query.id + `&parentId=` + query.parentId)
-      return { 
-            detailData: data.InnerDetail,
-            CurItem: data.CurItem,
-            CurItemParent: data.CurItemParent,
-            HotList: data.HotList.slice(0,5)
-        };
+    let { data } = await app.$axios.get(
+      `/api/NewActive/InnerData?id=` + query.id + `&parentId=` + query.parentId
+    );
+    return {
+      detailData: data.InnerDetail,
+      CurItem: data.CurItem,
+      CurItemParent: data.CurItemParent,
+      HotList: data.HotList.slice(0, 5)
+    };
   },
   data() {
     return {
@@ -66,22 +101,36 @@ export default {
       let d = dt.getDate() > 0 ? dt.getDate() : "0" + dt.getDate();
       return y + "-" + m + "-" + d;
     },
-    seeDetail(id, parentId){
+    formatActivityType(code) {
+      switch (code) {
+        case 1:
+          return "研讨会";
+        case 2:
+          return "沙龙";
+        case 3:
+          return "高峰论坛";
+        case 4:
+          return "线上直播";
+        default:
+          return "";
+      }
+    },
+    seeDetail(id, parentId) {
       this.$router.push({
-        path: '/activity',
+        path: "/activity",
         query: {
           id: id,
-          parentId: parentId
+          parentId: parentId == undefined ? 10000 : parentId
         }
-      })
+      });
     },
-    goTo(theme){
-        this.$router.push({
-        path: '/information',
-        query:{
-            theme: theme
-        } 
-      })
+    goTo(theme) {
+      this.$router.push({
+        path: "/information",
+        query: {
+          theme: theme
+        }
+      });
     }
   },
   mounted() {},
@@ -90,6 +139,16 @@ export default {
 </script>
 
 <style >
+#activity .activity-main-info li {
+  font-size: 36px;
+  margin: 10px 0;
+}
+#activity .activity-detail-title {
+  font-size: 40px;
+  color: #f08200;
+  line-height: 40px;
+  margin: 40px 0;
+}
 #activity .activity-content {
   padding: 50px 40px;
 }
@@ -142,7 +201,7 @@ export default {
   line-height: 52px;
 }
 #activity .activity-detail-words img {
-    max-width: 670px;
+  max-width: 670px;
 }
 .loading-cover {
   position: fixed;
@@ -159,84 +218,84 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.relative-info{
-    width: 750px;
-    margin: 60px 0;
+.relative-info {
+  width: 750px;
+  margin: 60px 0;
 }
-.relative-info .t-title{
-    width: 750px;
-    border-left: 12px solid #F08200;
-    padding: 0 40px 0 28px;
-    margin-bottom: 40px;
-        display: flex;
-    align-items: center;
-    justify-content: space-between;
+.relative-info .t-title {
+  width: 750px;
+  border-left: 12px solid #f08200;
+  padding: 0 40px 0 28px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.relative-info .t-title .text{
-    font-size: 40px;
-    line-height: 38px;
-    font-family: 思源黑体M!important;
-    font-weight: 500;
-    color: #000;
+.relative-info .t-title .text {
+  font-size: 40px;
+  line-height: 38px;
+  font-family: 思源黑体M !important;
+  font-weight: 500;
+  color: #000;
 }
-.relative-info .t-title .more{
-        font-size: .24rem;
-    font-weight: 400;
-    color: #888;
-    width: 168px;
-    height: 50px;
-    line-height: 50px;
-    background: #fff;
-    border: 1px solid #e2e2e2;
-    border-radius: 25px;
-    text-indent: 24px;
-    position: relative;
+.relative-info .t-title .more {
+  font-size: 0.24rem;
+  font-weight: 400;
+  color: #888;
+  width: 168px;
+  height: 50px;
+  line-height: 50px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 25px;
+  text-indent: 24px;
+  position: relative;
 }
 .relative-info .t-title .more:after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 24px;
-    background: url("../assets/img/index/查看更多.png");
-    background-size: cover;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 24px;
+  background: url("../assets/img/index/查看更多.png");
+  background-size: cover;
 }
 .relative-info ul {
-    width: 670px;
-    background: #fff;
-    box-shadow: 0 0 21px 0 #e3ebf0;
-    border-radius: 20px;
-    box-sizing: border-box;
-    padding: 29px 31px;
-    margin: 0 auto;
+  width: 670px;
+  background: #fff;
+  box-shadow: 0 0 21px 0 #e3ebf0;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 29px 31px;
+  margin: 0 auto;
 }
-.relative-info ul li{
-    list-style-type: none;
+.relative-info ul li {
+  list-style-type: none;
 }
 .relative-info ul li .title {
-    text-overflow: -o-ellipsis-lastline;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    font-size: 30px;
-    font-weight: 400;
-    color: #424242;
-    margin-bottom: 29px;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 30px;
+  font-weight: 400;
+  color: #424242;
+  margin-bottom: 29px;
 }
 .relative-info ul li .time {
-    font-size: 24px;
-    line-height: 19px;
-    font-weight: 400;
-    color: #888;
-    margin-bottom: 47px;
+  font-size: 24px;
+  line-height: 19px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 47px;
 }
-.relative-info ul li:last-child .time{
-        margin-bottom: 0;
+.relative-info ul li:last-child .time {
+  margin-bottom: 0;
 }
 </style>

@@ -68,6 +68,7 @@
   </div>
 </template>
 <script>
+import qs from 'qs';
 export default {
     data: function(){
       return{
@@ -87,6 +88,29 @@ export default {
           this.$toast('请填写姓名和手机号码');
           return;
         }
+        const params = {
+          model: JSON.stringify({
+            ID: 0,
+            CompanyName: this.company,
+            CompanyRange: this.scale,
+            LinkName: this.name,
+            LinkPhone: this.contact,
+            FunnyContent: this.interested,
+            Type: '服务',
+            CreateDate: new Date(),
+            IsDelete: 0
+          })
+        }
+        this.$axios({
+          method: 'post',
+          url: `/pc/Form/AddCustomerInfo`,
+          data : qs.stringify(params),
+          headers: {
+            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+          }
+        }).then(res=>{
+            console.log(res)
+        })
         this.$dialog.alert({
           message: '成功！',
         });

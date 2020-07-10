@@ -37,7 +37,7 @@
           <img class="fyw-nav-icon" src="../assets/img/nav/小报.png"/>
           <span class="text">泛员小报</span>
         </div>
-        <div class="fyw-nav-item ">
+        <div class="fyw-nav-item" @click="goDownloadApp()">
           <img class="fyw-nav-icon" src="../assets/img/nav/app.png"/>
           <span class="text">泛员之家APP下载</span>
         </div>
@@ -72,6 +72,9 @@ export default {
         this.$router.push({
           path: path
         })
+      },
+      goDownloadApp(){
+        location.href = 'https://www.fanyuanwang.cn/NewAbout/appCommand'
       }
     },
     mounted() {

@@ -3,8 +3,8 @@
     <img src="../assets/img/index/手指.png" class="fingure"  @click="showBookingBox = true"/>
     <span @click="showBookingBox = true">仅需一步，即刻预约体验</span>
     <div class="right-part">
-      <img src="../assets/img/index/电话.png" class="phone"/>
-      <img src="../assets/img/index/客服.png" class="contact"/>
+      <a href="tel:4000909388"><img src="../assets/img/index/电话.png" class="phone"/></a>
+      <img src="../assets/img/index/客服.png" class="contact" @click="customMiniChat()"/>
     </div>
     <div class="shadow-cover" v-if="showBookingBox" @click="showBookingBox = false"></div>
     <transition name="custom-classes-transition" enter-active-class="animate__animated animate__fadeInUp" leave-active-class="animate__animated animate__fadeOutDown" >
@@ -68,7 +68,9 @@
     
   </div>
 </template>
+
 <script>
+import qs from 'qs';
 export default {
     data: function(){
       return{
@@ -88,6 +90,29 @@ export default {
           this.$toast('请填写姓名和联系方式');
           return;
         }
+        const params = {
+          model: JSON.stringify({
+            ID: 0,
+            CompanyName: this.company,
+            CompanyRange: this.scale,
+            LinkName: this.name,
+            LinkPhone: this.contact,
+            FunnyContent: this.interested,
+            Type: '服务',
+            CreateDate: new Date(),
+            IsDelete: 0
+          })
+        }
+        this.$axios({
+          method: 'post',
+          url: `/pc/Form/AddCustomerInfo`,
+          data : qs.stringify(params),
+          headers: {
+            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+          }
+        }).then(res=>{
+            console.log(res)
+        })
         this.$dialog.alert({
           message: '成功！',
         });
@@ -107,6 +132,12 @@ export default {
           }
         }
       },
+      MoNiClick(){
+        document.getElementById('kf5-support-btn').click()
+      },
+      customMiniChat(){
+        ECHAT.customMiniChat({ 'echatTag': null }); //小浮窗打开对话
+      }
     },
     mounted: function () {
       document.addEventListener('touchstart',this.handleClick)
@@ -238,6 +269,7 @@ export default {
     #fyw-fixedBooking .right-part .phone,
     #fyw-fixedBooking .right-part .contact{
       width: 50px;
+      vertical-align: bottom;
     }
     .shadow-cover{
       width: 100%;

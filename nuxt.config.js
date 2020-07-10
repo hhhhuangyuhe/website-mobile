@@ -17,7 +17,13 @@ export default {
     script: [
       {
         src: '/js/flexible.js', type: 'text/javascript', charset: 'utf-8'
-      }
+      },
+      {
+        src: '/js/echat.kf.js', type: 'text/javascript', charset: 'utf-8'
+      },
+      // {
+      //   src: '//assets-cdn.kf5.com/supportbox/main.js?' + new Date().getDay(), id: 'kf5-provide-supportBox', charset: 'utf-8', 'kf5-domain': 'fairhr.kf5.com'
+      // },
     ]
   },
   /*
@@ -61,6 +67,13 @@ export default {
         '^/api': '/', // 把 /api 替换成 /
         changeOrigin: true // 表示是否跨域
       }    
+    },
+    '/pc': {
+      target: 'http://fanyuanwang.cn',
+      pathRewrite: {
+        '^/pc': '/', // 把 /api 替换成 /
+        changeOrigin: true // 表示是否跨域
+      }  
     }
   },
   /*
