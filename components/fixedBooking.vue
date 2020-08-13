@@ -4,7 +4,7 @@
     <span @click="showBookingBox = true">仅需一步，即刻预约体验</span>
     <div class="right-part">
       <a href="tel:4000909388"><img src="../assets/img/index/电话.png" class="phone"/></a>
-      <img src="../assets/img/index/客服.png" class="contact" @click="customMiniChat()"/>
+      <img src="../assets/img/index/客服.png" class="contact" @click="MoNiClick()"/>
     </div>
     <div class="shadow-cover" v-if="showBookingBox" @click="showBookingBox = false"></div>
     <transition name="custom-classes-transition" enter-active-class="animate__animated animate__fadeInUp" leave-active-class="animate__animated animate__fadeOutDown" >

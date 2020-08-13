@@ -1,6 +1,14 @@
 <template>
   <div class="indexPage">
-    <img src="../assets/img/index/AD.png" class="adv" />
+    <div>
+      <client-only>
+          <swiper ref="bannerSwiper" :options="bannerSwiperOptions">
+            <swiper-slide v-for="item in bannerList" :key="item.id">
+              <img :src="item.img" class="adv" @click="goLink(item.flag,item.link)"/>
+            </swiper-slide>
+          </swiper>
+        </client-only>
+    </div>
     <div class="index-block block1">
       <p class="big-title regular">大中型企业人力资源管理数字化服务平台</p>
       <p class="sub-title">深度服务员工、激发组织活力</p>
@@ -453,6 +461,24 @@ export default {
             "社保缴纳成本、用工成本、员工异动等人事报表一键生成， 为公司决策提供科学依据。"
         }
       ],
+      bannerList: [
+        {
+          id: 0,
+          img: require("@/assets/img/banner/hrreading.png"),
+          link: '/single/hrreading',
+          flag: 1 // 内部
+        },{
+          id: 1,
+          img: require("@/assets/img/banner/banner手机端.jpg"),
+          link: 'https://www.fanyuanwang.cn/Content/pages/midautumn/pc/index.html',
+          flag: 0 // 外部
+        },{
+          id: 2,
+          img: require("@/assets/img/index/AD.png"),
+          link: null,
+          flag: null
+        },
+      ],
       swiperOptions: {
         // pagination: {
         //   el: '.swiper-pagination',
@@ -460,6 +486,14 @@ export default {
         // },
         autoplay: {
           delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false
+        },
+        loop: true
+      },
+      bannerSwiperOptions: {
+        autoplay: {
+          delay: 5000,
           stopOnLastSlide: false,
           disableOnInteraction: false
         },
@@ -473,6 +507,17 @@ export default {
       this.$router.push({
         path: path
       });
+    },
+    goLink(flag, link) {
+      if(link != null){
+        if(flag == 1){
+          this.$router.push(link)
+        } else if(flag == 0){
+          location.href = link
+        } else{
+          return;
+        }
+      }
     },
     formatTime(t) {
       let dt = new Date(t);
