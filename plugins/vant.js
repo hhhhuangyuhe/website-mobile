@@ -1,5 +1,8 @@
 import Vue from 'vue';
-import Vant from 'vant';
+import { Picker, Dialog, Popup, Toast } from 'vant';
 import 'vant/lib/index.css';
 
-Vue.use(Vant);
+Vue.use(Picker);
+Vue.use(Dialog);
+Vue.use(Popup);
+Vue.use(Toast);

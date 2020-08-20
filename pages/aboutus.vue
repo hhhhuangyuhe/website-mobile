@@ -96,7 +96,7 @@
       </div>
     </div>
     <div class="b-three" v-if="active == 2">
-      <img src="../assets/img/aboutus/地图.png" class="map" />
+      <img src="../assets/img/aboutus/地图2.png" class="map" />
       <div class="contactus">
         <img src="../assets/img/aboutus/contactus.png" class="special-title" />
         <p class="data">

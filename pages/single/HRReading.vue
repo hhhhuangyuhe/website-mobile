@@ -15,7 +15,7 @@
         <p>阅读人群：资深HR、企业高管等</p>
       </div>
     </div>
-    <img src="@/assets/img/single/hrreading/图.png" class="adv1" />
+    <img src="@/assets/img/single/hrreading/图.png" class="adv1" @click="Apply"/>
     <div class="catelogue">
       <img src="@/assets/img/single/hrreading//组 17.png" class="title-img" />
       <div class="catelogue-content">
@@ -158,8 +158,9 @@
       <span @click="Apply">申请获取</span>
       <img src="@/assets/img/single/hrreading/图层 9.png" class="icon2" @click="GoTop" />
     </div>
-    <div class="shadow" v-show="showApply" @click.self = "showApply = false">
+    <div class="shadow" v-show="showApply" @click.self="showApply = false">
       <div class="applying-box">
+        <img src="@/assets/img/nav/guanbi.png" class="gb" @click="showApply = false"/>
         <p class="title">仅需一步</p>
         <p class="title">免费获取《HR解读》最新期刊</p>
         <div class="input-group">
@@ -214,6 +215,19 @@
 import qs from "qs";
 export default {
   layout: "withoutfixbooking",
+  head() {
+    return {
+      title: "探究深度，聚焦前沿，引领变革，HR必看刊物《HR解读》在线免费申领",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "探究深度，聚焦前沿，引领变革，HR必看刊物《HR解读》在线免费申领",
+        },
+      ],
+    };
+  },
   data() {
     return {
       showApply: false,
@@ -237,8 +251,8 @@ export default {
     };
   },
   methods: {
-    GoTop(){
-      window.scrollTo(0,0);
+    GoTop() {
+      window.scrollTo(0, 0);
     },
     Apply() {
       this.showApply = true;
@@ -269,7 +283,7 @@ export default {
           Email: this.hrreading.email,
           Position: this.hrreading.position,
           AddressRemark: this.hrreading.address,
-          FunnyContent: '',
+          FunnyContent: "",
           Type: "服务",
           CreateDate: new Date(),
           IsDelete: 0,
@@ -284,7 +298,7 @@ export default {
         },
       }).then((res) => {
         console.log(res.data == false);
-        if ((res.data).toLowerCase() == 'true' || res.data === true) {
+        if (res.data.toLowerCase() == "true" || res.data === true) {
           this.$dialog.alert({
             message: "申请成功！",
           });
@@ -296,6 +310,30 @@ export default {
       });
       this.showApply = false;
     },
+  },
+  mounted() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    if (
+      bIsIpad ||
+      bIsIphoneOs ||
+      bIsMidp ||
+      bIsUc7 ||
+      bIsUc ||
+      bIsAndroid ||
+      bIsCE ||
+      bIsWM
+    ) {
+    } else {
+      location.href = "https://www.fanyuanwang.cn/hrreading/index";
+    }
   },
 };
 </script>
@@ -368,6 +406,13 @@ export default {
   font-weight: 400;
   color: rgba(0, 0, 0, 1);
 }
+.applying-box .gb{
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  width: 28px;
+  height: 28px;
+}
 #hrreading {
   width: 750px;
   font-family: "思源黑体";
@@ -392,6 +437,7 @@ export default {
 }
 .face-img {
   width: 230px;
+  height: 304px;
   margin-right: 50px;
 }
 .face .basic p {

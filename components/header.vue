@@ -41,10 +41,10 @@
           <img class="fyw-nav-icon" src="../assets/img/nav/app.png"/>
           <span class="text">泛员之家APP下载</span>
         </div>
-        <div class="fyw-nav-item ">
+        <!-- <div class="fyw-nav-item ">
           <img class="fyw-nav-icon" src="../assets/img/nav/计划.png"/>
           <span class="text">2020百家企业数字化转型援助计划</span>
-        </div>
+        </div> -->
         <div class="fyw-nav-item" :class="nowRoute == 'aboutus'? 'active' : ''" @click="goPath('/aboutus')">
           <img class="fyw-nav-icon" src="../assets/img/nav/关于.png"/>
           <span class="text">关于泛员网</span>

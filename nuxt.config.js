@@ -84,6 +84,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    analyze: false,
     extend (config, ctx) {
     },
     postcss:[
@@ -91,7 +92,6 @@ export default {
         remUnit: 75,
         exclude: /node_modules/i
       })
-      // require('autoprefixer')
     ],
   }
 }

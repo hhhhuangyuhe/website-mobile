@@ -36,11 +36,12 @@
             <img src="../assets/img/booking/below-s.png" class="below-s"/>
           </div>
           <ul class="selector" v-show="showScaleList">
-            <li class="select-option" @click="scale = '100人以下';showScaleList = false;">100人以下</li>
-            <li class="select-option" @click="scale = '100人-500人';showScaleList = false;">100人-500人</li>
-            <li class="select-option" @click="scale = '500人-1000人';showScaleList = false;">500人-1000人</li>
+            <li class="select-option" @click="scale = '10000人以上';showScaleList = false;">10000人以上</li>
+            <li class="select-option" @click="scale = '5000人-10000人';showScaleList = false;">5000人-10000人</li>
             <li class="select-option" @click="scale = '1000人-5000人';showScaleList = false;">1000人-5000人</li>
-            <li class="select-option" @click="scale = '5000人以上';showScaleList = false;">5000人以上</li>
+            <li class="select-option" @click="scale = '500人-1000人';showScaleList = false;">500人-1000人</li>
+            <li class="select-option" @click="scale = '100人-500人';showScaleList = false;">100人-500人</li>
+            <li class="select-option" @click="scale = '100人以下';showScaleList = false;">100人以下</li>
           </ul>
         </div>
         <div class="book-row subscribe-interested">

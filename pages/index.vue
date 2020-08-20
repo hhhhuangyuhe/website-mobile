@@ -44,7 +44,7 @@
       <p class="big-title">泛员网正在服务这些企业的员工</p>
       <p class="number-title">
         累计
-        <span class="number">225148</span>人
+        <span class="number">30万+</span>人
       </p>
       <div class="company-container">
         <div class="customerRollingBox" id="customerRollingBox">
@@ -464,19 +464,19 @@ export default {
       bannerList: [
         {
           id: 0,
-          img: require("@/assets/img/banner/hrreading.png"),
-          link: '/single/hrreading',
-          flag: 1 // 内部
-        },{
-          id: 1,
           img: require("@/assets/img/banner/banner手机端.jpg"),
           link: 'https://www.fanyuanwang.cn/Content/pages/midautumn/pc/index.html',
           flag: 0 // 外部
         },{
+          id: 1,
+          img: require("@/assets/img/banner/hrreading.png"),
+          link: '/single/hrreading',
+          flag: 1 // 内部
+        },{
           id: 2,
           img: require("@/assets/img/index/AD.png"),
-          link: null,
-          flag: null
+          link: 'https://www.fanyuanwang.cn/NewAbout/appCommand',
+          flag: 0
         },
       ],
       swiperOptions: {
@@ -531,7 +531,8 @@ export default {
     },
     seeDetail(id, parentId) {
       this.$router.push({
-        path: "/activity",
+        // path: "/activity",
+        path: "/paper",
         query: {
           id: id,
           parentId: parentId
