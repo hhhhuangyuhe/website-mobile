@@ -278,6 +278,7 @@ export default {
           ID: 0,
           CompanyName: this.hrreading.company,
           CompanyRange: this.hrreading.scale,
+          FunnyContent: 'hr解读',
           LinkName: this.hrreading.name,
           LinkPhone: this.hrreading.phone,
           Email: this.hrreading.email,

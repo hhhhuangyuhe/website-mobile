@@ -18,3 +18,8 @@ input,textarea{
 .van-ellipsis{
   font-size: 32px!important;
 }
+
+* {
+  -webkit-user-select: text !important;
+  -user-select: text !important;
+}
