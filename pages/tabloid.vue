@@ -42,7 +42,7 @@
           :key="index"
           @click="seeDetail(item._id, item._categoryid)"
         >
-          <img :src="item._imgurl" class="item-img" />
+          <img :src="item._imgurl.replace(/https/g,'http')" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
             <p class="item-time">{{formatTime(item._addtime)}}</p>

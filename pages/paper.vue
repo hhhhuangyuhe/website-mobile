@@ -10,7 +10,7 @@
         </span>
       </p>
       <div class="paper-sammary">{{detailData._summary}}</div>
-      <div v-html="detailData._contents" class="paper-detail-words"></div>
+      <div v-html="detailData._contents.replace(/https/g,'http')" class="paper-detail-words"></div>
     </div>
     <div class="relative-info">
         <p class="t-title">
@@ -139,7 +139,7 @@ export default {
   color: rgba(0, 0, 0, 1);
   line-height: 52px;
 }
-#paper .paper-detail-words img {
+#paper .paper-detail-words img,#paper .paper-detail-words video {
     max-width: 670px;
     height: auto;
 }

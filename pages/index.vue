@@ -309,8 +309,8 @@
         <client-only>
           <swiper ref="mySwiper" :options="swiperOptions">
             <swiper-slide v-for="(item,index) in newsSwiperList" :key="index">
-              <div @click="seeDetail(item._id, item._categoryid)">
-                <img :src="item._imgurl" class="news-swiper-img" />
+              <div @click="activityDetail(item._id, item._categoryid)">
+                <img :src="item._imgurl.replace(/https/g,'http')" class="news-swiper-img" />
                 <p class="news-swiper-title">{{item._title}}</p>
                 <p class="news-swiper-time">{{formatTime(item._addtime)}}</p>
               </div>
@@ -529,9 +529,17 @@ export default {
       let d = dt.getDate() > 0 ? dt.getDate() : "0" + dt.getDate();
       return y + "-" + m + "-" + d;
     },
+    activityDetail(id, parentId) {
+      this.$router.push({
+        path: "/activity",
+        query: {
+          id: id,
+          parentId: parentId
+        }
+      });
+    },
     seeDetail(id, parentId) {
       this.$router.push({
-        // path: "/activity",
         path: "/paper",
         query: {
           id: id,

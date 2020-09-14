@@ -19,9 +19,9 @@ export default {
       {
         src: '/js/flexible.js', type: 'text/javascript', charset: 'utf-8'
       },
-      // {
-      //   src: '/js/echat.kf.js', type: 'text/javascript', charset: 'utf-8'
-      // },
+      {
+        src: 'https://hm.baidu.com/hm.js?4afcdd89687eceefa9d37dc633a4456a', type: 'text/javascript', charset: 'utf-8'
+      },
       {
         src: '//assets-cdn.kf5.com/supportbox/main.js?' + new Date().getDay(), id: 'kf5-provide-supportBox', charset: 'utf-8', 'kf5-domain': 'fairhr.kf5.com'
       }

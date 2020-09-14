@@ -45,7 +45,11 @@
     </ul>
     <div class="latest-function" v-if="latest!='' && active == 0">
       <p class="inner-title">最新活动</p>
-      <img :src="latest._imgurl" class="latest-img" @click="seeDetail(latest._id, latest._categoryid)"/>
+      <img
+        :src="latest._imgurl.replace(/https/g,'http')"
+        class="latest-img"
+        @click="seeDetail(latest._id, latest._categoryid)"
+      />
       <div class="latest-detail">
         <p class="title" @click="seeDetail(latest._id, latest._categoryid)">{{latest._title}}</p>
         <span class="signUp">立即报名</span>
@@ -55,8 +59,13 @@
     <div class="function-list" v-if="functionList.length > 0 && active == 0">
       <p class="inner-title">往期活动</p>
       <div class="list-container">
-        <div class="list-item" v-for="(item,index) in functionList" :key="index" @click="seeDetail(item._id, item._categoryid)">
-          <img :src="item._imgurl" class="item-img" />
+        <div
+          class="list-item"
+          v-for="(item,index) in functionList"
+          :key="index"
+          @click="seeDetail(item._id, item._categoryid)"
+        >
+          <img :src="item._imgurl.replace(/https/g,'http')" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
             <p class="item-time">{{formatTime(item._addtime)}}</p>
@@ -67,8 +76,13 @@
     <div class="function-list wt-type" v-if="active != 0">
       <p class="inner-title">{{activeName}}</p>
       <div class="list-container">
-        <div class="list-item" v-for="(item,index) in currentList" :key="index" @click="seeDetail(item._id, item._categoryid)">
-          <img :src="item._imgurl" class="item-img" />
+        <div
+          class="list-item"
+          v-for="(item,index) in currentList"
+          :key="index"
+          @click="seeDetail(item._id, item._categoryid)"
+        >
+          <img :src="item._imgurl.replace(/https/g,'http')" class="item-img" />
           <div class="item-detail">
             <p class="item-title">{{item._title}}</p>
             <p class="item-time">{{formatTime(item._addtime)}}</p>
@@ -88,10 +102,10 @@ import FYWSubscribe from "../components/subscribe";
 export default {
   layout: "fyw",
   components: {
-    FYWSubscribe
+    FYWSubscribe,
   },
   async asyncData({ app, query }) {
-    let { data } = await app.$axios.get(`/api/NewActive/IndexData`)
+    let { data } = await app.$axios.get(`/api/NewActive/IndexData`);
     const theme = query.theme;
     let currentList = data.fygd;
     let active = 0;
@@ -124,7 +138,7 @@ export default {
         currentList = data.rkjl;
         active = 6;
         break;
-        case "HR信息化":
+      case "HR信息化":
         currentList = data.hrxxh;
         active = 7;
         break;
@@ -133,36 +147,44 @@ export default {
         active = 0;
         break;
     }
-      return {
-        allData: data,
-        latest:
-          data.hasOwnProperty("schd") && data.schd.length > 0
-            ? data.schd[0]
-            : "",
-        functionList:
-          data.hasOwnProperty("schd") && data.schd.length > 1
-            ? data.schd.slice(1)
-            : [],
-            currentList: currentList,
-            active: active,
-            activeName: theme?theme:'市场活动'
-      }
+    return {
+      allData: data,
+      latest:
+        data.hasOwnProperty("schd") && data.schd.length > 0 ? data.schd[0] : "",
+      functionList:
+        data.hasOwnProperty("schd") && data.schd.length > 1
+          ? data.schd.slice(1)
+          : [],
+      currentList: currentList,
+      active: active,
+      activeName: theme ? theme : "市场活动",
+    };
   },
   data() {
     return {
       navBarFixed: false,
-      pageLoading: false
+      pageLoading: false,
     };
   },
   methods: {
     seeDetail(id, parentId) {
-      this.$router.push({
-        path: "/activity",
-        query: {
-          id: id,
-          parentId: parentId
-        }
-      });
+      if (this.active == 0) {
+        this.$router.push({
+          path: "/activity",
+          query: {
+            id: id,
+            parentId: parentId,
+          },
+        });
+      } else {
+        this.$router.push({
+          path: "/paper",
+          query: {
+            id: id,
+            parentId: parentId,
+          },
+        });
+      }
     },
     formatTime(t) {
       let dt = new Date(t);
@@ -212,7 +234,7 @@ export default {
           this.currentList = this.allData.schd;
           break;
       }
-      document.documentElement.scrollTop = 140
+      document.documentElement.scrollTop = 140;
     },
     watchScroll() {
       var setHeight = this.$refs.bannerImg.clientHeight;
@@ -225,7 +247,7 @@ export default {
       } else {
         this.navBarFixed = false;
       }
-    }
+    },
   },
   mounted() {
     var _this = this;
@@ -233,7 +255,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.watchScroll);
-  }
+  },
 };
 </script>
 
