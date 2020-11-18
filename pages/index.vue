@@ -2,12 +2,23 @@
   <div class="indexPage">
     <div>
       <client-only>
-          <swiper ref="bannerSwiper" :options="bannerSwiperOptions">
-            <swiper-slide v-for="item in bannerList" :key="item.id">
-              <img :src="item.img" class="adv" @click="goLink(item.flag,item.link)"/>
-            </swiper-slide>
-          </swiper>
-        </client-only>
+        <swiper ref="bannerSwiper" :options="bannerSwiperOptions">
+          <!-- <swiper-slide v-for="(item, index) in bannerList" :key="index">
+            <img
+              :src="item.img"
+              class="adv"
+              @click="goLink(item.flag, item.link)"
+            />
+          </swiper-slide> -->
+          <swiper-slide v-for="(item, index) in banner_list" :key="index">
+            <img
+              :src="item.imgPath"
+              class="adv"
+              @click="goToLink(item.targetLink)"
+            />
+          </swiper-slide>
+        </swiper>
+      </client-only>
     </div>
     <div class="index-block block1">
       <p class="big-title regular">大中型企业人力资源管理数字化服务平台</p>
@@ -15,7 +26,7 @@
       <div class="pd-list">
         <div
           class="pd-list-item"
-          v-for="(item,index) in pdList"
+          v-for="(item, index) in pdList"
           :key="index"
           @click="goPath(item.path)"
         >
@@ -23,28 +34,32 @@
             <img :src="item.img" class="pd-img" />
             <img src="../assets/img/index/gengduo.png" class="gengduo" />
           </div>
-          <p class="pd-name">{{item.name}}</p>
+          <p class="pd-name">{{ item.name }}</p>
           <div class="color-line" :class="item.colorLine"></div>
-          <p class="pd-describe">{{item.describe}}</p>
+          <p class="pd-describe">{{ item.describe }}</p>
         </div>
       </div>
     </div>
     <div class="index-block block2">
       <p class="big-title">泛员网核心优势</p>
       <div class="advantage-list">
-        <div class="advantage-list-item" v-for="(item,index) in advantageList" :key="index">
+        <div
+          class="advantage-list-item"
+          v-for="(item, index) in advantageList"
+          :key="index"
+        >
           <img :src="item.img" class="advantage-icon" />
-          <p class="advantage-title">{{item.t1}}</p>
-          <p class="advantage-title">{{item.t2}}</p>
-          <p class="advantage-detail">{{item.detail}}</p>
+          <p class="advantage-title">{{ item.t1 }}</p>
+          <p class="advantage-title">{{ item.t2 }}</p>
+          <p class="advantage-detail">{{ item.detail }}</p>
         </div>
       </div>
     </div>
     <div class="index-block block3">
       <p class="big-title">泛员网正在服务这些企业的员工</p>
       <p class="number-title">
-        累计
-        <span class="number">30万+</span>人
+        月度服务员工
+        <span class="number">30万+</span>
       </p>
       <div class="company-container">
         <div class="customerRollingBox" id="customerRollingBox">
@@ -308,11 +323,14 @@
       <div class="news-swiper-box">
         <client-only>
           <swiper ref="mySwiper" :options="swiperOptions">
-            <swiper-slide v-for="(item,index) in newsSwiperList" :key="index">
+            <swiper-slide v-for="(item, index) in newsSwiperList" :key="index">
               <div @click="activityDetail(item._id, item._categoryid)">
-                <img :src="item._imgurl.replace(/https/g,'http')" class="news-swiper-img" />
-                <p class="news-swiper-title">{{item._title}}</p>
-                <p class="news-swiper-time">{{formatTime(item._addtime)}}</p>
+                <img
+                  :src="item._imgurl.replace(/https/g, 'http')"
+                  class="news-swiper-img"
+                />
+                <p class="news-swiper-title">{{ item._title }}</p>
+                <p class="news-swiper-time">{{ formatTime(item._addtime) }}</p>
               </div>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -331,12 +349,12 @@
       <div class="info-list">
         <div
           class="info-list-item"
-          v-for="(item,index) in infoList"
+          v-for="(item, index) in infoList"
           :key="index"
           @click="seeDetail(item._id, item._categoryid)"
         >
-          <p class="info-title">{{item._title}}</p>
-          <p class="info-time">{{formatTime(item._addtime)}}</p>
+          <p class="info-title">{{ item._title }}</p>
+          <p class="info-time">{{ formatTime(item._addtime) }}</p>
         </div>
       </div>
     </div>
@@ -349,19 +367,23 @@ import FYWBooking from "../components/booking";
 export default {
   layout: "fyw",
   components: {
-    FYWBooking
+    FYWBooking,
   },
   async asyncData({ app, query }) {
     let { data } = await app.$axios.get(`/api/NewActive/IndexData`);
+    let banner_data = await app.$axios({
+      method: "post",
+      url: `https://api.fanyuanwang.cn/api/AdIMG/GetPictureList`,
+      data: JSON.stringify([11]),
+      headers: { "content-type": "application/json; charset=utf-8" },
+    });
+    // console.log(banner_data);
     return {
       allData: data,
       newsSwiperList:
         data.hasOwnProperty("schd") && data.schd.length > 0 ? data.schd : [],
-      infoList:
-        // data.hasOwnProperty("fydt") && data.fydt.length > 0
-        //   ? data.fydt.slice(0, 5)
-        //   : []
-        data.hasOwnProperty("mn") && data.mn.length > 0 ? data.mn : []
+      infoList: data.hasOwnProperty("mn") && data.mn.length > 0 ? data.mn : [],
+      banner_list: banner_data.data.executeResult,
     };
   },
   data() {
@@ -372,64 +394,64 @@ export default {
           name: "员工关系服务",
           describe: "智能在线入离职，人事管理全流程可视化",
           colorLine: "line1",
-          path: "/product/ers"
+          path: "/product/ers",
         },
         {
           img: require("../assets/img/index/组 22.png"),
           name: "全国社保外包",
           describe: "300+城市，在线增减，数据即时可视",
           colorLine: "line2",
-          path: "/product/nsio"
+          path: "/product/nsso",
         },
         {
           img: require("../assets/img/index/组 23.png"),
           name: "薪酬核算",
           describe: "一键核算，智能纠错，数据安全准确",
           colorLine: "line3",
-          path: "/product/salaryAccounting"
+          path: "/product/paySalary",
         },
         {
           img: require("../assets/img/index/组 24.png"),
           name: "薪资代发",
           describe: "银企直连，电子工资条，个税属地化申报",
           colorLine: "line4",
-          path: "/product/payroll"
+          path: "/product/payroll",
         },
         {
           img: require("../assets/img/index/组 25.png"),
           name: "考勤与休假",
           describe: "移动定位考勤，智能排班，实时考勤报表",
           colorLine: "line5",
-          path: "/product/aav"
+          path: "/product/attendanceAndVacation",
         },
         {
           img: require("../assets/img/index/组 26.png"),
           name: "员工体检",
           describe: "150+城市，450+体检机构，员工体检进度即时可视",
           colorLine: "line6",
-          path: "/product/eme"
+          path: "/product/staffMedicalExamination",
         },
         {
           img: require("../assets/img/index/组 27.png"),
           name: "补充员工保障",
           describe: "在线参保与理赔，每月结算与付款",
           colorLine: "line7",
-          path: "/product/sep"
+          path: "/product/employeeProtection",
         },
         {
           img: require("../assets/img/index/组 28.png"),
           name: "节日福利",
           describe: "精选节日商品，员工自主N选1，全国免费包邮",
           colorLine: "line8",
-          path: "/product/holidayBenefits"
+          path: "/product/holidayBenefits",
         },
         {
           img: require("../assets/img/index/组 29.png"),
           name: "积分福利",
           describe: "激活组织活力，增加员工到手收入，降低企业财税压力",
           colorLine: "line9",
-          path: "/product/pointBenefits"
-        }
+          path: "/product/pointsBenefit",
+        },
       ],
       advantageList: [
         {
@@ -437,46 +459,60 @@ export default {
           t1: "服务在线协同",
           t2: "流程清晰可",
           detail:
-            "全流程线上操作，在线协同及反馈，员工参保、薪酬发放等处理进度完全可视。"
+            "全流程线上操作，在线协同及反馈，员工参保、薪酬发放等处理进度完全可视。",
         },
         {
           img: require("../assets/img/index/矢量智能对象2.png"),
           t1: "重要节点实时提醒",
           t2: "有效避免逾期风险",
           detail:
-            "社保缴纳、工资发放截止日提前通知，员工参保、薪资发放异常及时反馈。"
+            "社保缴纳、工资发放截止日提前通知，员工参保、薪资发放异常及时反馈。",
         },
         {
           img: require("../assets/img/index/矢量智能对象3.png"),
           t1: "直接对接员工",
           t2: "彻底解放HR",
           detail:
-            "全国在线客服中心24小时响应员工诉求，直接对接员工，处理服务流程异常问题。"
+            "全国在线客服中心24小时响应员工诉求，直接对接员工，处理服务流程异常问题。",
         },
         {
           img: require("../assets/img/index/矢量智能对象4.png"),
           t1: "数据报表自动生成",
           t2: "为决策提供科学依据",
           detail:
-            "社保缴纳成本、用工成本、员工异动等人事报表一键生成， 为公司决策提供科学依据。"
-        }
+            "社保缴纳成本、用工成本、员工异动等人事报表一键生成， 为公司决策提供科学依据。",
+        },
       ],
       bannerList: [
+        // {
+        //   id: 0,
+        //   img: require("@/assets/img/banner/banner手机端.jpg"),
+        //   link: 'https://www.fanyuanwang.cn/Content/pages/midautumn/pc/index.html',
+        //   flag: 0 // 外部
+        // },
         {
-          id: 0,
-          img: require("@/assets/img/banner/banner手机端.jpg"),
-          link: 'https://www.fanyuanwang.cn/Content/pages/midautumn/pc/index.html',
-          flag: 0 // 外部
-        },{
           id: 1,
           img: require("@/assets/img/banner/hrreading.png"),
-          link: '/single/hrreading',
-          flag: 1 // 内部
-        },{
+          link: "/single/hrreading",
+          flag: 1, // 内部
+        },
+        {
           id: 2,
           img: require("@/assets/img/index/AD.png"),
-          link: 'https://www.fanyuanwang.cn/NewAbout/appCommand',
-          flag: 0
+          link: "https://www.fanyuanwang.cn/NewAbout/appCommand",
+          flag: 0,
+        },
+        {
+          id: 3,
+          img: require("@/assets/img/index/泛员手机官网体检banner3.jpg"),
+          link: "/product/staffMedicalExamination",
+          flag: 1,
+        },
+        {
+          id: 4,
+          img: require("@/assets/img/index/banner5.jpg"),
+          link: "/product/pointsBenefit",
+          flag: 1,
         },
       ],
       swiperOptions: {
@@ -487,36 +523,41 @@ export default {
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         },
-        loop: true
+        loop: true,
       },
       bannerSwiperOptions: {
         autoplay: {
           delay: 5000,
           stopOnLastSlide: false,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         },
-        loop: true
+        loop: true,
       },
-      intervalObj: ""
+      intervalObj: "",
     };
   },
   methods: {
     goPath(path) {
       this.$router.push({
-        path: path
+        path: path,
       });
     },
     goLink(flag, link) {
-      if(link != null){
-        if(flag == 1){
-          this.$router.push(link)
-        } else if(flag == 0){
-          location.href = link
-        } else{
+      if (link != null) {
+        if (flag == 1) {
+          this.$router.push(link);
+        } else if (flag == 0) {
+          location.href = link;
+        } else {
           return;
         }
+      }
+    },
+    goToLink(targetLink) {
+      if (targetLink != "") {
+        window.location.href = targetLink;
       }
     },
     formatTime(t) {
@@ -534,8 +575,8 @@ export default {
         path: "/activity",
         query: {
           id: id,
-          parentId: parentId
-        }
+          parentId: parentId,
+        },
       });
     },
     seeDetail(id, parentId) {
@@ -543,8 +584,8 @@ export default {
         path: "/paper",
         query: {
           id: id,
-          parentId: parentId
-        }
+          parentId: parentId,
+        },
       });
     },
     rollStart() {
@@ -563,7 +604,7 @@ export default {
         var value2 = new Date(b[property]);
         return value2 - value1;
       };
-    }
+    },
   },
   mounted() {
     let c1 = document.getElementById("customerContainer1");
@@ -576,7 +617,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.intervalObj);
-  }
+  },
 };
 </script>
 

@@ -1,10 +1,32 @@
 <template>
   <div id="aboutUs">
-    <img src="../assets/img/aboutus/banner.png" class="banner" ref="bannerImg"/>
-    <div class="about-nav" :class="navBarFixed == true ? 'navBarWrap' :''">
-      <div class="about-nav-item" :class="active == 0? 'active' : ''" @click="active = 0">关于泛员网</div>
-      <div class="about-nav-item" :class="active == 1? 'active' : ''" @click="active = 1">安全保障</div>
-      <div class="about-nav-item" :class="active == 2? 'active' : ''" @click="active = 2">联系我们</div>
+    <img
+      src="../assets/img/aboutus/banner.png"
+      class="banner"
+      ref="bannerImg"
+    />
+    <div class="about-nav" :class="navBarFixed == true ? 'navBarWrap' : ''">
+      <div
+        class="about-nav-item"
+        :class="active == 0 ? 'active' : ''"
+        @click="active = 0"
+      >
+        关于泛员网
+      </div>
+      <div
+        class="about-nav-item"
+        :class="active == 1 ? 'active' : ''"
+        @click="active = 1"
+      >
+        安全保障
+      </div>
+      <div
+        class="about-nav-item"
+        :class="active == 2 ? 'active' : ''"
+        @click="active = 2"
+      >
+        联系我们
+      </div>
     </div>
     <div class="b-one" v-if="active == 0">
       <div class="datas">
@@ -39,25 +61,30 @@
         </div>
       </div>
       <div class="long-words">
-        <p class="row">泛员网，是国内领先的人力资源管理数字化服务平台，致力于服务大中型企业和快速成长型企业。成立16年以来，平台逐步完成业务布局，凭借成熟的人力资源数字化运营整体解决方案，为企业提供涵盖员工关系服务、全国社保外包、薪酬核算、薪资代发、考勤与休假、员工体检、补充员工保障、节日福利、积分福利等服务。</p>
-        <p
-          class="row"
-        >基于深耕人力资源服务领域多年的深刻洞察和深厚沉淀，泛员网以“深度服务员工、激发组织活力”的服务理念，凭借“在线交互、流程可视、对接员工、智能报表、分类协同、实时提醒”六大平台优势，实现流程标准化、服务可视化、操作在线化、数据分析智能化，通过数字化赋能企业人力资源运营转型升级，从根本上提升人力资源运营效能。</p>
-        <p
-          class="row"
-        >目前，泛员网已在全国范围成立了52+分公司，落地服务覆盖300+城市，与500多家大中型企业建立深度合作，服务员工达30多万，客户涵盖信息技术、金融、通信、工业制造、生物制药、咨询、快消品等行业，为企业提供全面、优质、高效的服务和数字化解决方案，并先后获得“最具潜力人力资源服务机构”、“大中华区人力资源服务机构品牌100强”、“最佳人力资源服务客户满意度奖”等行业荣誉。</p>
-        <p
-          class="row"
-        >面向未来，泛员网正借助AI、云计算、大数据、生物识别等前沿技术，以人力资源运营为核心，打造“HR SaaS+人力资源服务外包+员工福利+HR SSC+企业文化”五大产品矩阵，开发更加丰富的人力资源服务应用和解决方案，构建高感知、强体验的人力资源运营交互平台，塑造HR工作智能化、员工体验个性化、企业管理现代化的人力资源运营新生态。</p>
-        <p
-          class="row"
-        >拥抱数字化，泛员网与客户一起，共启发展新未来！</p>
+        <p class="row">
+          泛员网，是国内领先的人力资源管理数字化服务平台，致力于服务大中型企业和快速成长型企业。成立16年以来，平台逐步完成业务布局，凭借成熟的人力资源数字化运营整体解决方案，为企业提供涵盖员工关系服务、全国社保外包、薪酬核算、薪资代发、考勤与休假、员工体检、补充员工保障、节日福利、积分福利等服务。
+        </p>
+        <p class="row">
+          基于深耕人力资源服务领域多年的深刻洞察和深厚沉淀，泛员网以“深度服务员工、激发组织活力”的服务理念，凭借“在线交互、流程可视、对接员工、智能报表、分类协同、实时提醒”六大平台优势，实现流程标准化、服务可视化、操作在线化、数据分析智能化，通过数字化赋能企业人力资源运营转型升级，从根本上提升人力资源运营效能。
+        </p>
+        <p class="row">
+          目前，泛员网已在全国范围成立了52+分公司，落地服务覆盖300+城市，与500多家大中型企业建立深度合作，服务员工达30多万，客户涵盖信息技术、金融、通信、工业制造、生物制药、咨询、快消品等行业，为企业提供全面、优质、高效的服务和数字化解决方案，并先后获得“最具潜力人力资源服务机构”、“大中华区人力资源服务机构品牌100强”、“最佳人力资源服务客户满意度奖”等行业荣誉。
+        </p>
+        <p class="row">
+          面向未来，泛员网正借助AI、云计算、大数据、生物识别等前沿技术，以人力资源运营为核心，打造“HR
+          SaaS+人力资源服务外包+员工福利+HR
+          SSC+企业文化”五大产品矩阵，开发更加丰富的人力资源服务应用和解决方案，构建高感知、强体验的人力资源运营交互平台，塑造HR工作智能化、员工体验个性化、企业管理现代化的人力资源运营新生态。
+        </p>
+        <p class="row">拥抱数字化，泛员网与客户一起，共启发展新未来！</p>
       </div>
     </div>
     <div class="b-two" v-if="active == 1">
       <div class="save">
         <div class="save-item">
-          <img src="../assets/img/aboutus/矢量智能对象1.png" class="save-icon" />
+          <img
+            src="../assets/img/aboutus/矢量智能对象1.png"
+            class="save-icon"
+          />
           <div>
             <p class="save-item-title">信息安全合规</p>
             <ul>
@@ -70,7 +97,10 @@
           </div>
         </div>
         <div class="save-item">
-          <img src="../assets/img/aboutus/矢量智能对象2.png" class="save-icon" />
+          <img
+            src="../assets/img/aboutus/矢量智能对象2.png"
+            class="save-icon"
+          />
           <div>
             <p class="save-item-title">防渗透与攻击</p>
             <ul>
@@ -82,7 +112,10 @@
           </div>
         </div>
         <div class="save-item">
-          <img src="../assets/img/aboutus/矢量智能对象3.png" class="save-icon" />
+          <img
+            src="../assets/img/aboutus/矢量智能对象3.png"
+            class="save-icon"
+          />
           <div>
             <p class="save-item-title">数据传输与存储加密</p>
             <ul>
@@ -96,11 +129,12 @@
       </div>
     </div>
     <div class="b-three" v-if="active == 2">
-      <img src="../assets/img/aboutus/地图2.png" class="map" />
+      <img src="../assets/img/aboutus/map3.jpg" class="map" />
       <div class="contactus">
         <img src="../assets/img/aboutus/contactus.png" class="special-title" />
         <p class="data">
-          <span class="big-data">52</span>个直属分公司&nbsp;&nbsp;&nbsp;&nbsp;覆盖
+          <span class="big-data">52</span
+          >个直属分公司&nbsp;&nbsp;&nbsp;&nbsp;覆盖
           <span class="big-data">300</span>+城市
         </p>
         <p class="break-line"></p>
@@ -113,9 +147,9 @@
         <div class="group-detail last">
           <img src="../assets/img/aboutus/电话.png" class="phone" />
           <p>
-            全国服务热线：400-623-9996
-            <br />合作热线：0755-8250、4488-631
-            <br />投诉专线：0755-8250、4488
+            全国服务热线：400-0909-388
+            <br />合作热线：0755-8250-4488-811
+            <br />投诉专线：0755-8250-4488-897
           </p>
         </div>
       </div>
@@ -129,7 +163,7 @@ import FYUBooking from "../components/booking";
 export default {
   layout: "fyw",
   components: {
-    FYUBooking
+    FYUBooking,
   },
   data() {
     return {
@@ -138,23 +172,26 @@ export default {
     };
   },
   methods: {
-    watchScroll () {
+    watchScroll() {
       var setHeight = this.$refs.bannerImg.clientHeight;
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        if (scrollTop > setHeight) {
-          this.navBarFixed = true
-        } else {
-          this.navBarFixed = false
-        }
-     }
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (scrollTop > setHeight) {
+        this.navBarFixed = true;
+      } else {
+        this.navBarFixed = false;
+      }
+    },
   },
-  mounted () {
+  mounted() {
     // 事件监听滚动条
-    window.addEventListener('scroll', this.watchScroll)
+    window.addEventListener("scroll", this.watchScroll);
   },
-  beforeDestroy(){
+  beforeDestroy() {
     window.removeEventListener("scroll", this.watchScroll);
-  }
+  },
 };
 </script>
 
@@ -203,9 +240,9 @@ export default {
   transform: translateX(-50%);
 }
 .navBarWrap {
-  position:fixed;
-  top:108px;
-  border-top: 1px solid #EBECED;
+  position: fixed;
+  top: 108px;
+  border-top: 1px solid #ebeced;
 }
 .b-one .datas {
   width: 670px;

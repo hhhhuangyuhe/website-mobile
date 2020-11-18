@@ -1,13 +1,30 @@
 <template>
   <div class="container">
-    <h1 v-if="error.statusCode === 404">页面不存在</h1>
-    <h1 v-else>应用发生错误异常</h1>
-    <nuxt-link to="/">首 页</nuxt-link>
+    <van-empty description="抱歉，你查找的页面不存在" />
+    <p class="toindex">前往<nuxt-link to="/" class="lk">首 页</nuxt-link></p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['error'],
-}
+  props: ["error"],
+  mounted() {
+    // this.$router.push("/");
+  },
+};
 </script>
+<style scoped>
+.container {
+  min-height: calc(100vh - 560px);
+  padding-top: 120px;
+}
+.toindex {
+  text-align: center;
+  font-size: 28px;
+}
+.lk {
+  margin-left: 8px;
+  text-decoration: underline;
+  font-size: 28px;
+}
+</style>

@@ -23,3 +23,66 @@ input,textarea{
   -webkit-user-select: text !important;
   -user-select: text !important;
 }
+
+/* .ivu-input {
+  height: 40px;
+  font-size: 14px;
+}
+textarea.ivu-input {
+  height: 80px;
+  resize: none;
+}
+.ivu-input-prefix,
+.ivu-input-suffix {
+  width: 20px;
+  height: 20px;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ivu-input-with-prefix {
+  padding-left: 60px;
+}
+.ivu-avatar-small {
+  border-radius: initial;
+  width: 20px;
+  height: 20px;
+}
+.ivu-select-single .ivu-select-selection,
+.ivu-select-multiple .ivu-select-selection {
+  min-height: 40px;
+  padding: 0 20px;
+}
+
+  .ivu-select-single
+  .ivu-select-selection
+  .ivu-select-placeholder,
+.ivu-select-single .ivu-select-selection .ivu-select-selected-value,
+
+  .ivu-select-multiple
+  .ivu-select-selection
+  .ivu-select-placeholder,
+.ivu-select-multiple .ivu-select-selection .ivu-select-selected-value {
+  min-height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+.ivu-select-single .ivu-select-prefix,
+.ivu-select-multiple .ivu-select-prefix {
+  padding: 0 12px 0 0;
+}
+.ivu-select-item {
+  font-size: 14px !important;
+}
+.ivu-input-icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.ivu-icon-ios-information-circle:before,
+.ivu-icon-ios-checkmark-circle:before {
+  font-size: 24px;
+}
+.ivu-modal-confirm-head-title {
+  font-weight: normal;
+} */
