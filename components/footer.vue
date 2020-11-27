@@ -1,14 +1,14 @@
 <template>
   <div id="fyw-footer">
     <div class="top">
-      <img src="../assets/img/index/logo_bottom.png" class="bottom-logo"/>
+      <img src="../assets/img/index/泛员云(2).png" class="bottom-logo"/>
       <span>深度服务员工，激发组织活力</span>
     </div>
     <div class="bottom">
       <p class="contact">联系方式</p>
       <p class="contact-line contact-phone"><img src="../assets/img/index/phone(1).png"/>400-0909-388</p>
-      <p class="contact-line contact-website"><img src="../assets/img/index/website.png"/>www.fanyuanwang.cn</p>
-      <p class="contact-line contact-mail"><img src="../assets/img/index/mail.png"/>service@fanyuanwang.cn</p>
+      <p class="contact-line contact-website"><img src="../assets/img/index/website.png"/>www.fanyuancloud.com</p>
+      <!-- <p class="contact-line contact-mail"><img src="../assets/img/index/mail.png"/>service@fanyuanwang.cn</p> -->
       <img src="../assets/img/index/公众号.png" class="gzh" @click="gzhQrcode = !gzhQrcode"/>
       <img src="../assets/img/index/微信客服.png" class="wxkf" @click="kfQrcode = !kfQrcode"/>
       <img src="../assets/img/others/公众号.jpg" class="pp1" v-show="gzhQrcode"/>

@@ -1,63 +1,291 @@
 <template>
-  <div id="pointBenefits">
-    <div class="bgTop">
-      <p class="pd-title">积分福利</p>
-      <p class="pd-sub-title">激活组织活力，增加员工到手收入</p>
-      <p class="pd-sub-title">降低企业财税压力</p>
+  <div id="pointsBenefitPublicity">
+    <div class="banner">
+      <img src="../../assets/img/product/pointsBenefit/组 1349.png" alt="">
     </div>
-    <div class="pd-block block1">
-      <p class="block-title">企业存在的问题</p>
-      <div class="q-item">
-        <img src="../../assets/img/product/pd9/矢量智能对象1.png" class="q-item-icon" />
-        <div class="q-item-words">
-          <p>企业缺乏科学的福利管理</p>
-          <p>员工对福利感知差</p>
+    <div class="content">
+      <section class="problem">
+        <h3>大中型企业</h3>
+        <h3>福利管理面临的难题</h3>
+        <div class="bgico"></div>
+        <ul>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1219.png" alt="">
+            </div>
+            <p>众口难调，无法满足个性化需求，员工满意度低</p>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1217.png" alt="">
+            </div>
+            <p>员工的福利参与率不高，福利感知度低</p>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1218.png" alt="">
+            </div>
+            <p>花费大量时间选品、采购、寄送，专人负责福利管理，耗时耗力</p>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1220.png" alt="">
+            </div>
+            <p>企业福利补贴发放较频繁，无法降低企业税负和员工个人所得税</p>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1221.png" alt="">
+            </div>
+            <p>福利系统功能有限，操作和维护复杂</p>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1222.png" alt="">
+            </div>
+            <p>组织文化建设，缺乏合适的落实方式</p>
+          </li>
+        </ul>
+        <div class="btn morePlan" @click="$router.push('/fillinginfo')">获取服务方案</div>
+      </section>
+      <section class="info">
+        <h3>泛员网积分福利介绍</h3> 
+        <div class="bgico"></div>
+        
+      <client-only>
+         <swiper ref="bannerSwiper" :options="bannerSwiperOptions">
+          <swiper-slide>
+            <p class="infoTitle">HR全流程线上操作，福利管理简单高效</p>
+            <ul class="infoDesc">
+              <li>HR可灵活设置积分额度对应规则，为员工分配积分。</li>
+              <li>福利发放、反馈和管理流程均线上完成，系统操作简单，维护方便。</li>
+              <li>HR不用再花时间在福利供应商选择和采购商品管理方面，省时省力省心。</li>
+            </ul>
+            <img src="../../assets/img/product/pointsBenefit/组 1351.png" class="adv"   />
+          </swiper-slide>
+          <swiper-slide>
+            <p class="infoTitle">360°全覆盖消费场景，满足员工个性化需求</p>
+            <ul class="infoDesc">
+              <li>福利兑换资源丰富，涵盖衣食住行与学习成长。</li>
+              <li>员工手机端随时自主兑换，满足员工不同需求。</li>
+              <li>员工全流程移动交互，提高员工参与度。</li>
+            </ul>
+            <img src="../../assets/img/product/pointsBenefit/组 1345.png" class="adv"   />
+          </swiper-slide>
+          <swiper-slide >
+            <p class="infoTitle">多场景扩展应用，实现员工保障到激励的有效延伸</p>
+            <ul class="infoDesc">
+              <li>可容易扩展到组织文化建设的各类场景中，实现福利由保障导向到激励导向的有效延伸。</li>
+              <li>福利数据自动汇总、历史福利记录可追溯，实现对员工福利预算的统筹及数据分析。</li>
+            </ul>
+            <img src="../../assets/img/product/pointsBenefit/组 1346.png" class="adv"   />
+          </swiper-slide>
+          <swiper-slide >
+            <p class="infoTitle">合规实现企业与员工双节税</p>
+            <ul class="infoDesc">
+              <li>在合规的前提下，企业将交通补贴、餐饮补贴、住房补贴、通讯补贴、全勤奖励、岗位津贴等成本支出，通过积分福利的形式发放到员工账户，由于福利不计入工资总额，员工个税和企业承担的五险一金都有所会降低，从而达到企业与员工双节税效果。</li>
+            </ul>
+            <img src="../../assets/img/product/pointsBenefit/组 1347.png" class="adv"   />
+          </swiper-slide>
+        </swiper>
+        <div class="swiper-pagination dotRound"></div><!--分页器。如果放置在swiper-container外面，需要自定义样式。-->
+
+      </client-only>
+        <div class="btn morePlan" @click="$router.push('/fillinginfo')">预约体验</div>
+      </section>
+      <section class="value">
+        <h3>泛员网带来的价值</h3> 
+        <div class="bgico"></div>
+        <ul>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1305.png" alt="">
+            </div>
+            <div class="info">
+              <h3>福利效果最大化</h3>
+              <p>企业花费同样的福利成本，实现福利效果最大化</p>
+            </div>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1304.png" alt="">
+            </div>
+            <div class="info">
+              <h3>HR省事</h3>
+              <p>HR无需对接商家和员工，省去大量的繁琐性工作</p>
+            </div>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/组 1310@2x.png" alt="">
+            </div>
+            <div class="info">
+              <h3>员工满意</h3>
+              <p>员工有更多的选择，对福利和企业关怀感知更好</p>
+            </div>
+          </li>
+        </ul>
+        <div class="btn morePlan" @click="$router.push('/fillinginfo')">预约体验</div>
+      </section>
+      <section class="plain">
+        <h3>3大实施流程</h3>
+        <h3>轻松落地服务方案</h3>
+        <div class="bgico"></div>
+        <div class="plainInfo">
+          <div class="imgWarp">
+            <img src="../../assets/img/product/pointsBenefit/组 1421.png" alt="">
+          </div>
+          <div class="desc">
+            <ul class="d1">
+              <li>
+                <span>01</span>
+                <p>沟通需求,商务洽谈</p>
+              </li>
+              <li>
+                <span>02</span>
+                <p>基于企业现状和问题分析及制定方案</p>
+              </li>
+            </ul>
+            <ul class="d2">
+              <li>
+                <span>03</span>
+                <p>双方签署合作协议</p>
+              </li>
+              <li>
+                <span>04</span>
+                <p>确定福利实施方案及预算</p>
+              </li>
+              <li>
+                <span>05</span>
+                <p>企业账号开通及人员培训</p>
+              </li>
+              
+            </ul>
+            <ul class="d3">
+              <li>
+                <span>06</span>
+                <p>企业在泛员网平台充值购买积分</p>
+              </li>
+              <li>
+                <span>07</span>
+                <p>企业自定义将积分发放给每位员工</p>
+              </li>
+              <li>
+                <span>08</span>
+                <p>员工在平台用积分兑换礼品或服务</p>
+              </li>
+              <li>
+                <span>09</span>
+                <p>供应商直接向员工提供商品或服务</p>
+              </li>
+              <li>
+                <span>10</span>
+                <p>泛员网客服中心响应和处理员工问题</p>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="btn morePlan" @click="$router.push('/fillinginfo')">预约体验</div>
+      </section>
+      <!-- 500+企业 -->
+      <section class="casus">
+        <h3>500+大中型企业信赖的选择</h3>
+        <div class="bgico"></div>
+        <ul>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/蒙版组 5.png" alt="">
+            </div>
+            <div class="title">
+              <div class="ico">餐饮</div>
+              <h4>某科技通信有限公司</h4>
+            </div>
+            <div class="content">
+              <h3>企业弹性福利实施案例</h3>
+              <div class="label">
+                <span>餐饮/住宿</span>
+                <span>年度体检</span>
+              </div>
+              <p>通过泛员网体检平台，该公司分布在北京、上海、深圳等城市的500余名员工实现了员工体检全国统一管理，体检费用全国统一价格，员工自主选择城市和体检机构，HR随时查看员工体检进度，做到让企业放心、HR省心、员工舒心。</p>
+            </div>
+          </li>
+          <li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/蒙版组 6.png" alt="">
+            </div>
+            <div class="title">
+              <div class="ico">建筑</div>
+              <h4>某地产集团有限公司</h4>
+            </div>
+            <div class="content">
+              <h3>员工年度体检实施案例</h3>
+              <div class="label">
+                <span>建筑/房地产</span>
+                <span>年度体检</span>
+              </div>
+              <p>采用泛员网实施方案后，该公司员工通过手机端即可自主预约体检时间和门店并自动推送体检报告，HR无需对接体检机构，同时泛员网客服中心及时跟进和处理员工任何问题，保证员工有更好的服务体验。</p>
+            </div>
+          </li><li>
+            <div class="imgWarp">
+              <img src="../../assets/img/product/pointsBenefit/摄图网_300311960_社交网络计划网络社会连接的背景图像（企业商用）.png" alt="">
+            </div>
+            <div class="title">
+              <div class="ico" style="font-size:16px;">互联网</div>
+              <h4>某信息技术股份有限公司</h4>
+            </div>
+            <div class="content">
+              <h3>员工体检全线上管理案例</h3>
+              <div class="label">
+                <span>计算机/互联网</span>
+                <span>年度体检</span>
+              </div>
+              <p>HR全流程线上操作，员工手机端自选体检机构并推送电子报告，同时员工体检流程和重要节点均有自动提醒，系统和人工多渠道通知，HR能随时了解和掌握每一位员工的体检进度，实现了该公司高效管理员工体检。</p>
+            </div>
+          </li>
+        </ul>
+        <div class="showBtn" @click="$router.push('/fillinginfo')">预约演示</div>
+      </section>
+      <div class="footer">
+        <h4>选择泛员网 拥抱数字化</h4>
+        <h3>持续提升人力资源运营效能</h3>
+        <p class="desc">一个平台，处理大中型企业更多HR管理与服务需求…</p>
+        <div class="iconList">
+        <ul>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1328.png" alt="">
+            <p>HCM SaaS</p>
+          </li>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1329.png" alt="">
+            <p>全国社保外包</p>
+          </li>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1330.png" alt="">
+            <p>薪酬服务外包</p>
+          </li>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1331.png" alt="">
+            <p>积分福利</p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1327.png" alt="">
+            <p>节日福利</p>
+          </li>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1333.png" alt="">
+            <p>补充医疗保险</p>
+          </li>
+          <li>
+            <img src="../../assets/img/product/pointsBenefit/组 1332.png" alt="">
+            <p>年度体检</p>
+          </li>
+        </ul>
+        <div class="btnWhite" @click="$router.push('/fillinginfo')">预约体验</div>
       </div>
-      <div class="q-item">
-        <img src="../../assets/img/product/pd9/矢量智能对象2.png" class="q-item-icon" />
-        <div class="q-item-words">
-          <p>HR疲于选择套餐、砍价和应付员工</p>
-        </div>
-      </div>
-      <div class="q-item">
-        <img src="../../assets/img/product/pd9/矢量智能对象3.png" class="q-item-icon" />
-        <div class="q-item-words">
-          <p>福利使用没有结合降低企业税负和员工个税</p>
-        </div>
       </div>
     </div>
-    <div class="pd-block block2">
-      <p class="block-title">泛员网积分福利</p>
-      <div class="inner-block b1">
-        <p class="block-number">01</p>
-        <p class="block-sub-title">福利内容丰富，操作更灵活</p>
-        <p class="block-describe">整合优质供应商资源，福利内容丰富</p>
-        <p class="block-describe">企业可为员工分配积分，灵活设置积分额度对应规则</p>
-        <p class="block-describe">HR随时查看员工使用状态，系统实时生成可视化 </p>
-        <img src="../../assets/img/product/pd9/产品图1.png" class="pd-img p1" />
-      </div>
-      <div class="inner-block b2">
-        <p class="block-number">02</p>
-        <p class="block-sub-title">员工真正实现“我的福利我做主”</p>
-        <p class="block-describe">员工选择多样，满足员工个性化需求</p>
-        <p class="block-describe">员工随时随地在线自主选购，我的福利我做主</p>
-        <p class="block-describe">泛员网客服中心及时跟进和处理员工任何问题</p>
-        <img src="../../assets/img/product/pd9/产品图2.png" class="pd-img p2" />
-      </div>
-      <div class="inner-block b3">
-        <p class="block-number">03</p>
-        <p class="block-sub-title">合理为员工降低税负</p>
-        <p class="block-describe">符合企业税法规定的福利14%内使用</p>
-        <p class="block-describe">企业合规为员工降低个税</p>
-        <img src="../../assets/img/product/pd9/产品图3.png" class="pd-img p3" />
-      </div>
-    </div>
-    <div class="pd-block block-advantage">
-      <p class="block-title">泛员网积分福利核心优势</p>
-      <advantage :adList="advantageList"></advantage>
-    </div>
-    <FYUBooking></FYUBooking>
   </div>
 </template>
 
@@ -72,36 +300,381 @@ export default {
   },
   data() {
     return {
-      advantageList: [
-        {
-          icon: require("../../assets/img/product/pd9/1.png"),
-          t1: "实现福利效果最大化",
-          t2: "",
-          d1: "企业花费同样的福利成本，实现福利效果的最大化",
-          d2: "企业可节省大量的时间和精力",
-          d3: ""
-        },{
-          icon: require("../../assets/img/product/pd9/2.png"),
-          t1: "HR省事",
-          t2: "",
-          d1: "HR无需对接商家，省去大量的繁琐性工作",
-          d2: "HR可以随时查看每个员工的福利领取状态",
-          d3: ""
-        },{
-          icon: require("../../assets/img/product/pd9/3.png"),
-          t1: "员工满意",
-          t2: "",
-          d1: "员工有更多选择，真正做到“我的福利我做主”",
-          d2: "员工对福利和企业关怀有更强的感知",
-          d3: ""
+      bannerSwiperOptions: {
+        autoplay: {
+          delay: 5000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false,
         },
-      ]
+        pagination: {
+          el: '.swiper-pagination',
+        },
+        loop: true,
+      },
+    
     };
   }
 };
 </script>
-
+<style>
+#pointsBenefitPublicity .dotRound span{
+  display: inline-block;
+  margin-right: 12px;
+}
+#pointsBenefitPublicity .swiper-pagination-bullet{
+  background:#DEE7FB!important;
+}
+#pointsBenefitPublicity .swiper-pagination-bullet-active{
+  background: #A6C0FC!important;
+}
+#pageContainer{
+  padding-bottom: 0!important;
+}
+</style>
 <style scoped>
+.dotRound{
+  position: relative;
+}
+
+.footer{
+  width: 100%;
+  height: 910px;
+  background: url('../../assets/img/product/pointsBenefit/组 1431.png');
+}
+.footer h4{
+  font-size: 43px;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 700;
+  text-align: center;
+  color: #58fecb;
+  line-height: 48px;
+  padding-top: 72px;
+}
+.footer h3{
+  font-size: 48px;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  margin: 20px 0 18px;
+  line-height: 48px;
+}
+.footer .desc{
+  font-size: 22px;
+  font-family: PingFang SC, PingFang SC-Regular;
+  font-weight: 400;
+  text-align: center;
+  color: #ffffff;
+  line-height: 48px;
+  margin-bottom: 20px;
+}
+.footer ul{
+  display: flex;
+  justify-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+.footer li{
+  flex:1;
+  text-align: center;
+  margin-top: 46px;
+}
+.footer li img{
+  width: 88px;
+  height: 88px;
+}
+.footer li p{
+  color: #fff;
+}
+.footer .btnWhite{
+  width: 360px;
+  text-align: center;
+  line-height: 80px;
+  height: 80px;
+  color: #4C80FA;
+  font-size: 30px;
+  margin-top: 70px;
+  background: #ffffff;
+  border-radius: 40px;
+  box-shadow: 0px 10px 20px 0px rgba(12,53,149,0.4); 
+  user-select: none;
+  cursor: pointer;
+  margin: 80px auto 0;
+}
+.plain{
+  padding-top: 100px;
+}
+.plain .plainInfo{
+  display: flex;
+}
+.plain .desc{
+  flex:1;
+}
+.plain .desc li{
+  display: flex;
+  position: relative;
+  margin-bottom: 30px;
+}
+.plain .desc li::before{
+  content: '';
+  z-index: 1;
+  display: inline-block;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  background: #FFEAD8;
+  transform:rotate(45deg);  
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  opacity: 0.8;
+}
+.plain .desc li span{
+  margin-right: 20px;
+  position: relative;
+  z-index: 2;
+  font-size: 25px;
+}
+.d1{
+  margin: 60px 0 118px;
+}
+.d2{
+  margin-bottom: 80px;
+}
+.d2 li::before{
+  background: #D5F1E8!important;
+}
+.d3 li::before{
+  background: #DEE7FB!important;
+}
+
+.plainInfo .imgWarp{
+  width: 270px;
+  padding: 0 45px;
+  box-sizing: border-box;
+}
+.plainInfo img{
+  width: 100%;
+}
+.swiper-container img{
+  width: 100%;
+}
+
+.casus{
+  margin-top: 210px;
+}
+.casus ul{
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  overflow: auto;
+}
+.casus ul li{
+  width: 536px;
+  border: 1px solid #E1E1E2;
+  border-radius: 10px 10px 0 0;
+  flex: none;
+  list-style: none;
+  margin-left: 42px;
+}
+.casus ul .imgWarp{
+  height: 240px;
+  overflow: hidden;
+}
+.casus ul li img{
+  width: 100%;
+}
+.casus .ico{
+  border-radius: 50%;
+  background: #fff;
+  width: 120px;
+  height: 120px;
+  box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16); 
+  text-align: center;
+  line-height: 120px;
+  font-size: 26px;
+  position: relative;
+  top: -70px;
+  margin-right: 10px;
+}
+.casus .title{
+  display: flex;
+  padding-left: 18px;
+  margin-top: 5px;
+  margin-bottom: -58px;
+}
+.casus .title h4{
+  color: #222531;
+}
+.casus .content{
+  padding:0 16px 16px; 
+}
+.casus .content h3{
+  font-size: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+  text-indent: 15px;
+}
+.casus .content p{
+  text-align: justify;
+  padding-top: 20px;
+  color: #222531;
+  line-height: 42px;
+}
+.casus .label span{
+  display: inline-block;
+  background: #fff;
+  text-align: center;
+  line-height: 40px;
+  padding: 0 20px;
+  color: #4C80FA;
+  font-size: 12px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 4px 0px rgba(12,53,149,0.1); 
+}
+.showBtn{
+  width: 260px;
+  height: 80px;
+  line-height: 80px;
+  color: #ff7300;
+  font-size: 30px;
+  text-align: center;
+  border: 1.5px solid #ff7300;
+  border-radius: 40px;
+  cursor: pointer;
+  user-select: none;
+  margin: 80px auto 170px;
+}
+
+
+
+.banner img{
+  width: 100%;
+}
+.problem{
+  padding: 60px 20px 30px;
+}
+.problem ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.problem li{
+  width: 50%;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 70px;
+}
+.problem .imgWarp{
+  width: 75px;
+  height: 120px;
+  margin: 0 auto;
+}
+.problem li img{
+  width: 100%;
+}
+section h3{
+  font-size: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+.problem {
+  margin-bottom: 30px;
+}
+
+.bgico{
+  margin: 30px auto 55px;
+  width: 76px;
+  height: 9px;
+  background-image:url('../../assets/img/product/pointsBenefit/重复网格 3@2x.png');
+}
+
+.btn{
+  width: 166px;
+  height: 80px;
+  background: linear-gradient(69deg, #ff7600 0%, #ff9700 100%);
+  box-shadow: 0px 5px 5px 0px rgba(56, 49, 35, 0.23);
+  border-radius: 40px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 26px;
+  font-weight: 400;
+  color: #ffffff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer
+}
+
+.morePlan{
+  margin: 40px auto 0;
+  width: 320px!important;
+}
+
+section .infoTitle{
+  font-size: 28px;
+  font-family: PingFang SC, PingFang SC-Bold;
+  font-weight: 600;
+  color: #222531;
+  margin-bottom: 10px;
+}
+section .infoDesc{
+  font-size: 24px;
+  font-family: PingFang SC, PingFang SC-Medium;
+  font-weight: 400;
+  text-align: left;
+  color: #747784;
+  line-height: 38px;
+}
+
+.info{
+  padding: 20px 45px;
+}
+
+.info li{
+  list-style: disc;
+  text-indent: 35px;
+  margin-bottom: 5px;
+}
+.value{
+  padding: 140px 0;
+  background: #F7F8FD;
+  margin-top: 90px;
+}
+.value .imgWarp{
+  width: 220px;
+}
+.value .imgWarp img{
+  width: 100%;
+}
+.value li{
+  display: flex;
+  padding: 20px 85px;
+  box-sizing: border-box;
+}
+.value .info{
+  margin-left: 75px;
+  flex: 1;
+  padding: 0;
+}
+.value .info h3{
+  font-size: 28px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.value .info p{
+  font-size: 20px;
+}
+
+
+
+
+
+
+
 #pointBenefits .bgTop {
   width: 750px;
   height: 500px;
