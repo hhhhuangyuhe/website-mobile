@@ -115,14 +115,14 @@
           <img class="fyw-nav-icon" src="../assets/img/nav/活动资讯.png" />
           <span class="text">活动与资讯 </span>
         </div>
-        <div
+        <!-- <div
           class="fyw-nav-item"
           :class="nowRoute == 'tabloid' ? 'active' : ''"
           @click="goPath('/tabloid')"
         >
           <img class="fyw-nav-icon" src="../assets/img/nav/小报.png" />
           <span class="text">泛员小报</span>
-        </div>
+        </div> -->
         <div class="fyw-nav-item" @click="goDownloadApp()">
           <img class="fyw-nav-icon" src="../assets/img/nav/app.png" />
           <span class="text">泛员之家APP下载</span>
@@ -164,7 +164,8 @@ export default {
       });
     },
     goDownloadApp() {
-      location.href = "https://www.fanyuanwang.cn/NewAbout/appCommand";
+      // location.href = "https://www.fanyuanwang.cn/NewAbout/appCommand";
+      location.href = "http://m.fanyuancloud.com/single/appdownload";
     },
   },
   mounted() {
