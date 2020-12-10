@@ -10,3 +10,11 @@
     font-family: "Bebas";
     src: url("./fonts/BebasNeue-1.otf");
 }
+@font-face{
+    font-family: "PingFang";
+    src: url("./fonts/PingFangSCRegular.ttf");
+}
+@font-face{
+    font-family: "YuYang";
+    src: url("./fonts/YuYang.ttf");
+}
