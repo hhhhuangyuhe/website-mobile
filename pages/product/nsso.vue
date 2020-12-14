@@ -74,6 +74,25 @@ import advantage from "../../components/advantage";
 import FYUBooking from "../../components/booking";
 export default {
   layout: "fyw",
+  head() {
+    return {
+      title: "全国社保外包-企业社保代办-泛员网",
+      meta: [
+        {
+          hid: "keywords",
+          name: "keywords",
+          content:
+            "社保外包，社保代办，社保代缴，全国社保，企业社保，公司社保，社保代理，社保外包公司，社保外包服务，企业社保代缴",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "泛员网为企业提供全国社保外包服务解决方案，服务范围涵盖深圳、北京、上海、广州、天津、重庆、武汉、沈阳等全国300多个城市，帮助企业轻松管理全国员工社保，及时获取最新的社保政策，提高人力资源管理效率。",
+        },
+      ],
+    };
+  },
   components: {
     advantage,
     FYUBooking

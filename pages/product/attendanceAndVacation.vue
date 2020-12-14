@@ -66,6 +66,25 @@ import advantage from "../../components/advantage";
 import FYUBooking from "../../components/booking";
 export default {
   layout: "fyw",
+  head() {
+    return {
+      title: "考勤与休假-劳动管理-工时管理-泛员网",
+      meta: [
+        {
+          hid: "keywords",
+          name: "keywords",
+          content:
+            "考勤管理、线上打卡、工时管理、假勤管理、考勤系统",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "泛员网考勤与休假解决方案，支持灵活定义员工出勤及休假规则，匹配多样化的工时管理应用场景，考勤管理全线上化处理，自动关联员工假期额度；打卡支持WiFi、GPS，补签、加班、休假、调班均可在线查看申请，考勤异常系统自动提醒；实时收集、分析、生成假勤数据报表，智能穿透问题数据，快速完成考勤休假数据核对，提升HR管理效率",
+        },
+      ],
+    };
+  },
   components: {
     advantage,
     FYUBooking

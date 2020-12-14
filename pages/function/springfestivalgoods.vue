@@ -117,7 +117,7 @@ export default {
   layout: "fywnopadding",
   head() {
     return {
-      title: "春节员工福利-企业弹性福利-公司节日福利-泛员网",
+      title: "公司春节福利怎么发才能让大家都满意？企业HR不可错过！",
       meta: [
         {
           hid: "keywords",

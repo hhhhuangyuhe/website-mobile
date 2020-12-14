@@ -68,6 +68,25 @@ import advantage from "../../components/advantage";
 import FYUBooking from "../../components/booking";
 export default {
   layout: "fyw",
+  head() {
+    return {
+      title: "员工关系服务-组织人事-在线入职-泛员网",
+      meta: [
+        {
+          hid: "keywords",
+          name: "keywords",
+          content:
+            "智能入职、劳动合同、人事档案、组织人事、入转调离、组织架构、人事管理",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "泛员网员工关系服务，为企业提供全国智能化入职、劳动合同、人事档案、人事预警等人事服务及应用，全面覆盖员工“入转调离”全职业周期全业务流程，适应不同企业的差异化管理特性，满足企业多层级、多元化管理模式需求，优化人力资源管理流程。",
+        },
+      ],
+    };
+  },
   components: {
     advantage,
     FYUBooking
